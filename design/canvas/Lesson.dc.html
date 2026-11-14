@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lesson: write your headline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&amp;family=Nunito:wght@400..900&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #FAF7F0; }
+a { color: #0F4C96; }
+a:hover { color: #0A3266; }
+sc-for, sc-if { display: contents; }
+button { font: inherit; color: inherit; }
+.disp { font-family: 'Fredoka', 'Baloo 2', 'Trebuchet MS', system-ui, sans-serif; }
+.cap { font-weight: 800; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.t-blue { --c: #4DA3FF; --cd: #1A6FD0; --cs: #DDEBFF; --ct: #0F4C96; }
+
+.bar { box-sizing: border-box; height: 12px; border: 2px solid #1D1B26; border-radius: 6px; background: #fff; }
+.pd .bar { background: var(--c); }
+.pa .bar { background: linear-gradient(90deg, var(--c) 50%, #fff 50%); }
+.pl { font-size: 15px; font-weight: 700; line-height: 1.3; color: #55525F; }
+.pd .pl { color: #1D1B26; }
+.pa .pl { color: #1D1B26; font-weight: 800; }
+
+.field { box-sizing: border-box; display: block; width: 100%; min-height: 100px; padding: 14px 16px; border: 3px solid #1D1B26; border-radius: 18px; background: #fff; color: #1D1B26; font-family: inherit; font-size: 18px; font-weight: 600; line-height: 1.45; resize: vertical; }
+.field:focus { outline: 4px solid var(--c); outline-offset: 2px; }
+.count { font-size: 13px; font-weight: 800; color: #55525F; }
+.count.over { color: #B3261E; }
+
+.btn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 22px; border: 3px solid #1D1B26; border-radius: 16px; box-shadow: 0 5px 0 #1D1B26; font-family: 'Fredoka', 'Trebuchet MS', sans-serif; font-weight: 600; font-size: 17px; line-height: 1; color: #1D1B26; text-decoration: none; cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease; }
+.btn:hover { color: #1D1B26; transform: translateY(2px); box-shadow: 0 3px 0 #1D1B26; }
+.btn:active { transform: translateY(5px); box-shadow: 0 0 0 #1D1B26; }
+.btn.primary { background: var(--c); }
+.btn.ghost { background: #fff; }
+.btn.primary[disabled] { border-color: #8E8A99; background: #E4E1EA; color: #55525F; box-shadow: none; transform: none; cursor: not-allowed; }
+.btn:focus-visible { outline: 3px solid #1D1B26; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}
+</style>
+</helmet>
+<div class="t-blue" style="background: #FAF7F0; color: #1D1B26; font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.5">
+<div style="box-sizing: border-box; max-width: 1360px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px) 64px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 14px 0 18px; border-bottom: 3px solid #1D1B26">
+<a class="btn ghost" href="Main.dc.html" style="min-height: 44px; padding: 0 16px; font-size: 16px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+Roadmap</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<span class="cap" style="padding: 5px 12px; border: 2px solid #1D1B26; border-radius: 999px; background: var(--c)">Level 2 · LinkedIn profile</span>
+<span style="padding: 4px 12px; border: 2px solid #1D1B26; border-radius: 999px; background: #fff; font-size: 13px; font-weight: 800">Step 2 of 4</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border: 2px solid #1D1B26; border-radius: 999px; background: #FFC83D; font-size: 13px; font-weight: 800">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="#1D1B26" stroke-width="2.4" stroke-linejoin="round"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.3l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9z"></path></svg>
++40 XP</span>
+</div>
+</header>
+
+<ol aria-label="Lesson parts" style="margin: 0; padding: 24px 0 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 14px 12px">
+<sc-for list="{{ parts }}" as="part" hint-placeholder-count="4">
+<li class="{{ part.cls }}" style="display: flex; flex-direction: column; gap: 8px">
+<div class="bar"></div>
+<div style="display: flex; flex-direction: column">
+<span class="pl">{{ part.t }}</span>
+<span style="font-size: 12.5px; font-weight: 700; color: #55525F">{{ part.kind }} · {{ part.m }} min</span>
+</div>
+</li>
+</sc-for>
+</ol>
+
+<main style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px; padding-top: 36px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="cap" style="color: var(--ct)">Part 3 of 4 · Practice</span>
+<h1 class="disp" style="margin: 0; font-weight: 600; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance">Draft your headline</h1>
+<p style="margin: 0; max-width: 60ch; font-size: 17px; line-height: 1.5; color: #3B3845; text-wrap: pretty">The headline is the one line shown next to your name in search, comments and messages. Build it from three pieces, in this order.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px dashed #1D1B26; border-radius: 18px; background: var(--cs)">
+<span class="disp" style="box-sizing: border-box; flex: 0 0 32px; height: 32px; display: grid; place-items: center; border: 2px solid #1D1B26; border-radius: 10px; background: var(--c); font-weight: 600; font-size: 16px; line-height: 1">1</span>
+<span style="font-size: 16px; font-weight: 800; line-height: 1.25">What you do</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px dashed #1D1B26; border-radius: 18px; background: var(--cs)">
+<span class="disp" style="box-sizing: border-box; flex: 0 0 32px; height: 32px; display: grid; place-items: center; border: 2px solid #1D1B26; border-radius: 10px; background: var(--c); font-weight: 600; font-size: 16px; line-height: 1">2</span>
+<span style="font-size: 16px; font-weight: 800; line-height: 1.25">Who it is for</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px dashed #1D1B26; border-radius: 18px; background: var(--cs)">
+<span class="disp" style="box-sizing: border-box; flex: 0 0 32px; height: 32px; display: grid; place-items: center; border: 2px solid #1D1B26; border-radius: 10px; background: var(--c); font-weight: 600; font-size: 16px; line-height: 1">3</span>
+<span style="font-size: 16px; font-weight: 800; line-height: 1.25">What they get</span>
+</div>
+</div>
+
+<div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; padding: 22px 22px 26px; border: 3px solid #1D1B26; border-radius: 30px; background: #fff; box-shadow: 0 8px 0 #1D1B26">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<label for="headline" class="disp" style="font-weight: 600; font-size: 22px; line-height: 1.2">Your headline</label>
+<textarea id="headline" class="field" rows="3" value="{{ draft }}" onChange="{{ onDraft }}"></textarea>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px">
+<span style="font-size: 13.5px; font-weight: 600; color: #55525F">Started from your service pitch in Level 1.</span>
+<span class="{{ countCls }}">{{ count }}</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 class="cap" style="margin: 0 0 4px; color: #55525F">Quick checks</h2>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{ checks }}" as="check" hint-placeholder-count="3">
+<li style="display: flex; align-items: center; gap: 10px; font-size: 15.5px; font-weight: 600; line-height: 1.35">
+<sc-if value="{{ check.ok }}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="Passed" style="box-sizing: border-box; flex: 0 0 26px; height: 26px; display: grid; place-items: center; border: 2px solid #1D1B26; border-radius: 9px; background: var(--c)"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1D1B26" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7.5"></path></svg></span></sc-if>
+<sc-if value="{{ check.no }}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Not yet" style="box-sizing: border-box; flex: 0 0 26px; height: 26px; border: 2px dashed #8E8A99; border-radius: 9px; background: #fff"></span></sc-if>
+<span>{{ check.text }}</span>
+</li>
+</sc-for>
+</ul>
+<p style="margin: 8px 0 0; font-size: 13.5px; font-weight: 600; color: #55525F">After you save, the coach scores clarity and specificity against the lesson rubric.</p>
+</div>
+
+<sc-if value="{{ canSave }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><button type="button" class="btn primary" onClick="{{ save }}">Save headline</button></div>
+</sc-if>
+<sc-if value="{{ cantSave }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px"><button type="button" class="btn primary" disabled="{{ true }}">Save headline</button><span style="font-size: 14px; font-weight: 700; color: #B3261E">Keep it between 1 and 220 characters to save.</span></div>
+</sc-if>
+<sc-if value="{{ saved }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15.5px; font-weight: 800; color: var(--ct)">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#FFC83D" stroke="#1D1B26" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.3l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9z"></path></svg>
+Saved to your Freelancer Profile · +40 XP</span>
+<a class="btn primary" href="Main.dc.html">Back to roadmap</a>
+</div>
+</sc-if>
+</div>
+</div>
+
+<aside aria-label="Your profile and preview" style="flex: 1 1 340px; min-width: 0; max-width: 440px; display: flex; flex-direction: column; gap: 20px">
+<div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; border: 3px solid #1D1B26; border-radius: 26px; background: #fff">
+<h2 class="cap" style="margin: 0; color: #55525F">From your Freelancer Profile</h2>
+<dl style="margin: 0; display: flex; flex-direction: column">
+<div style="display: flex; flex-direction: column; gap: 1px; padding: 9px 0; border-top: 2px dashed #D9D5CC">
+<dt style="font-size: 12.5px; font-weight: 700; color: #55525F">Service</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 800">Landing page design</dd>
+</div>
+<div style="display: flex; flex-direction: column; gap: 1px; padding: 9px 0; border-top: 2px dashed #D9D5CC">
+<dt style="font-size: 12.5px; font-weight: 700; color: #55525F">Target client</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 800">B2B SaaS startups</dd>
+</div>
+<div style="display: flex; flex-direction: column; gap: 1px; padding: 9px 0; border-top: 2px dashed #D9D5CC">
+<dt style="font-size: 12.5px; font-weight: 700; color: #55525F">Proof</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 800">1 shipped redesign <span style="font-weight: 600; color: #55525F">(self-reported)</span></dd>
+</div>
+</dl>
+<p style="margin: 0; font-size: 13.5px; font-weight: 600; line-height: 1.45; color: #55525F">Set in Level 1. Change it there and every channel draft updates.</p>
+</div>
+
+<div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; border: 3px solid #1D1B26; border-radius: 26px; background: var(--cs)">
+<h2 class="cap" style="margin: 0; color: var(--ct)">Live preview</h2>
+<div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border: 2px solid #1D1B26; border-radius: 18px; background: #fff">
+<span aria-hidden="true" style="box-sizing: border-box; flex: 0 0 48px; height: 48px; border: 2px solid #1D1B26; border-radius: 50%; background: #FFC83D"></span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 16px; font-weight: 800; line-height: 1.25">[Your name]</span>
+<span style="font-size: 14.5px; font-weight: 600; line-height: 1.4; color: #3B3845; overflow-wrap: anywhere">{{ preview }}</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 13.5px; font-weight: 600; line-height: 1.45; color: #3B3845">Later reused for your Upwork title and your portfolio page. You paste it into LinkedIn yourself.</p>
+</div>
+</aside>
+</main>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1020}}'>
+class Component extends DCLogic {
+  state = {
+    draft: "Web designer for B2B SaaS startups · landing pages that explain the product in one scroll",
+    saved: false
+  };
+
+  renderVals() {
+    const draft = this.state.draft;
+    const saved = this.state.saved;
+    const len = draft.length;
+    const okLen = len > 0 && len <= 220;
+    const okFor = /\bfor\b|\bhelp/i.test(draft);
+    const okPlain = len > 0 && !/guru|ninja|rockstar|wizard/i.test(draft);
+
+    const mk = (ok, text) => ({ ok: ok, no: !ok, text: text });
+
+    return {
+      draft: draft,
+      count: len + ' / 220',
+      countCls: len > 220 ? 'count over' : 'count',
+      preview: draft || 'Your headline appears here',
+      checks: [
+        mk(okLen, '220 characters or fewer'),
+        mk(okFor, 'Says who it is for'),
+        mk(okPlain, 'No filler titles such as guru, ninja or rockstar')
+      ],
+      parts: [
+        { cls: 'pd', t: 'What a headline does', kind: 'Read', m: 3 },
+        { cls: 'pd', t: 'Three patterns that work', kind: 'Read', m: 3 },
+        { cls: saved ? 'pd' : 'pa', t: 'Draft yours', kind: 'Practice', m: 6 },
+        { cls: saved ? 'pd' : 'pu', t: 'Save to your profile', kind: 'Create', m: 3 }
+      ],
+      canSave: okLen && !saved,
+      cantSave: !okLen && !saved,
+      saved: saved,
+      onDraft: (e) => this.setState({ draft: e.target.value, saved: false }),
+      save: () => this.setState({ saved: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

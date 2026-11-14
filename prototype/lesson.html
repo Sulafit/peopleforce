@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Write your headline — Freelance Growth OS</title>
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="t-blue">
+    <div class="wrap">
+      <header class="topbar">
+        <a class="btn btn--sm" href="index.html">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+          Roadmap
+        </a>
+        <div class="pills">
+          <span class="pill pill--sm pill--level cap">Level 2 · LinkedIn profile</span>
+          <span class="pill pill--sm">Step 2 of 4</span>
+          <span class="pill pill--sm pill--xp">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="#1D1B26" stroke-width="2.4" stroke-linejoin="round"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.3l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9z" /></svg>
+            +40 XP
+          </span>
+        </div>
+      </header>
+
+      <ol class="lesson-parts" aria-label="Lesson parts">
+        <li class="lesson-part is-done">
+          <div class="lesson-part__bar"></div>
+          <div><span class="lesson-part__title">What a headline does</span><span class="lesson-part__meta">Read · 3 min</span></div>
+        </li>
+        <li class="lesson-part is-done">
+          <div class="lesson-part__bar"></div>
+          <div><span class="lesson-part__title">Three patterns that work</span><span class="lesson-part__meta">Read · 3 min</span></div>
+        </li>
+        <li class="lesson-part is-active">
+          <div class="lesson-part__bar"></div>
+          <div><span class="lesson-part__title">Draft yours</span><span class="lesson-part__meta">Practice · 6 min</span></div>
+        </li>
+        <li class="lesson-part">
+          <div class="lesson-part__bar"></div>
+          <div><span class="lesson-part__title">Save to your profile</span><span class="lesson-part__meta">Create · 3 min</span></div>
+        </li>
+      </ol>
+
+      <main class="lesson">
+        <div class="lesson__main">
+          <div class="lesson__intro">
+            <span class="cap">Part 3 of 4 · Practice</span>
+            <h1>Draft your headline</h1>
+            <p>The headline is the one line shown next to your name in search, comments and messages. Build it from three pieces, in this order.</p>
+          </div>
+
+          <ol class="pattern">
+            <li><span class="part__n">1</span>What you do</li>
+            <li><span class="part__n">2</span>Who it is for</li>
+            <li><span class="part__n">3</span>What they get</li>
+          </ol>
+
+          <div class="card">
+            <div class="field-group">
+              <label for="headline">Your headline</label>
+              <textarea id="headline" class="field" rows="3">Web designer for B2B SaaS startups · landing pages that explain the product in one scroll</textarea>
+              <div class="field-foot">
+                <span>Started from your service pitch in Level 1.</span>
+                <span class="count" id="count" aria-live="polite">0 / 220</span>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="cap section-label">Quick checks</h2>
+              <ul class="checks">
+                <li class="check" data-check="length"><span class="check__mark" role="img" aria-label="Not yet"></span>220 characters or fewer</li>
+                <li class="check" data-check="audience"><span class="check__mark" role="img" aria-label="Not yet"></span>Says who it is for</li>
+                <li class="check" data-check="plain"><span class="check__mark" role="img" aria-label="Not yet"></span>No filler titles such as guru, ninja or rockstar</li>
+              </ul>
+              <p class="hint" style="margin-top: 12px">After you save, the coach scores clarity and specificity against the lesson rubric.</p>
+            </div>
+
+            <div class="actions" id="actions"></div>
+          </div>
+        </div>
+
+        <aside class="lesson__side" aria-label="Your profile and preview">
+          <div class="side-card">
+            <h2 class="cap muted">From your Freelancer Profile</h2>
+            <dl class="facts">
+              <div><dt>Service</dt><dd>Landing page design</dd></div>
+              <div><dt>Target client</dt><dd>B2B SaaS startups</dd></div>
+              <div><dt>Proof</dt><dd>1 shipped redesign <span>(self-reported)</span></dd></div>
+            </dl>
+            <p class="hint">Set in Level 1. Change it there and every channel draft updates.</p>
+          </div>
+
+          <div class="side-card side-card--tint">
+            <h2 class="cap">Live preview</h2>
+            <div class="preview">
+              <span class="preview__avatar" aria-hidden="true"></span>
+              <div class="preview__text">
+                <span class="preview__name">[Your name]</span>
+                <span class="preview__headline" id="preview"></span>
+              </div>
+            </div>
+            <p class="hint" style="color: var(--ink-2)">Later reused for your Upwork title and your portfolio page. You paste it into LinkedIn yourself.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+    <script src="js/lesson.js"></script>
+  </body>
+</html>

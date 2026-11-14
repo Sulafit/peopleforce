@@ -1,0 +1,579 @@
+// Generated from data/roadmap.json by scripts/sync-prototype.mjs. Do not edit by hand.
+window.FGOS_ROADMAP = {
+  "levels": [
+    {
+      "id": "l1",
+      "theme": "yellow",
+      "tier": "Basics",
+      "title": "Résumé basics",
+      "blurb": "One clean template. Your real experience, written so a client gets it in ten seconds.",
+      "steps": [
+        {
+          "id": "l1s1",
+          "title": "Pick one service",
+          "minutes": 10,
+          "xp": 20,
+          "summary": "Choose the one service you will sell first and the client it is for. Every later step is built from this answer.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Why one service beats a list",
+              "minutes": 3
+            },
+            {
+              "kind": "Practice",
+              "title": "Sort your skills by proof",
+              "minutes": 4
+            },
+            {
+              "kind": "Create",
+              "title": "Service line and target client",
+              "minutes": 3
+            }
+          ],
+          "output": "A one-sentence service pitch and a target-client definition, saved to your Freelancer Profile."
+        },
+        {
+          "id": "l1s2",
+          "title": "Fill the template",
+          "minutes": 15,
+          "xp": 30,
+          "summary": "Put your experience into one fixed résumé layout. No design decisions, only content.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What goes in each section",
+              "minutes": 4
+            },
+            {
+              "kind": "Create",
+              "title": "Experience and skills",
+              "minutes": 8
+            },
+            {
+              "kind": "Practice",
+              "title": "Cut it to one page",
+              "minutes": 3
+            }
+          ],
+          "output": "A one-page résumé in the standard template."
+        },
+        {
+          "id": "l1s3",
+          "title": "Proof bullets",
+          "minutes": 15,
+          "xp": 30,
+          "summary": "Rewrite duties as evidence: what you made, for whom, and what changed. Only real work counts.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Duty versus proof",
+              "minutes": 3
+            },
+            {
+              "kind": "Practice",
+              "title": "Rewrite three bullets",
+              "minutes": 8
+            },
+            {
+              "kind": "Create",
+              "title": "Add one real project",
+              "minutes": 4
+            }
+          ],
+          "output": "Three proof bullets tied to real projects, each marked self-reported or verified."
+        },
+        {
+          "id": "l1s4",
+          "title": "Export and share",
+          "minutes": 5,
+          "xp": 20,
+          "summary": "Check the page, export a PDF and get a share link you control.",
+          "parts": [
+            {
+              "kind": "Practice",
+              "title": "Ten-second read test",
+              "minutes": 2
+            },
+            {
+              "kind": "Create",
+              "title": "Export PDF and link",
+              "minutes": 3
+            }
+          ],
+          "output": "A PDF résumé and a private share link."
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "theme": "blue",
+      "tier": "Basics",
+      "title": "LinkedIn profile",
+      "blurb": "Turn the résumé into a profile people can find, then publish your first project post.",
+      "steps": [
+        {
+          "id": "l2s1",
+          "title": "Profile basics",
+          "minutes": 10,
+          "xp": 20,
+          "summary": "Photo, location, industry and a custom URL. Small fields that decide whether the rest gets read.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What visitors see first",
+              "minutes": 3
+            },
+            {
+              "kind": "Create",
+              "title": "Fill the top card",
+              "minutes": 5
+            },
+            {
+              "kind": "Practice",
+              "title": "Check it logged out",
+              "minutes": 2
+            }
+          ],
+          "output": "A complete top card and a custom profile URL."
+        },
+        {
+          "id": "l2s2",
+          "title": "Write your headline",
+          "minutes": 15,
+          "xp": 40,
+          "summary": "Say what you do and who it is for in one line. LinkedIn gives you 220 characters.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What a headline does",
+              "minutes": 3
+            },
+            {
+              "kind": "Read",
+              "title": "Three patterns that work",
+              "minutes": 3
+            },
+            {
+              "kind": "Practice",
+              "title": "Draft yours",
+              "minutes": 6
+            },
+            {
+              "kind": "Create",
+              "title": "Save to your profile",
+              "minutes": 3
+            }
+          ],
+          "output": "A headline under 220 characters, saved to your Freelancer Profile and ready to paste."
+        },
+        {
+          "id": "l2s3",
+          "title": "About section",
+          "minutes": 20,
+          "xp": 40,
+          "summary": "Four short paragraphs: who you help, what you do, proof, how to reach you.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "The four-paragraph structure",
+              "minutes": 4
+            },
+            {
+              "kind": "Practice",
+              "title": "Draft from your proof bullets",
+              "minutes": 10
+            },
+            {
+              "kind": "Create",
+              "title": "Edit and copy",
+              "minutes": 6
+            }
+          ],
+          "output": "An About section drafted from your own experience, ready to paste."
+        },
+        {
+          "id": "l2s4",
+          "title": "First project post",
+          "minutes": 20,
+          "xp": 50,
+          "summary": "Write one post about a real project. You publish it yourself; nothing is posted for you.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What a useful project post has",
+              "minutes": 4
+            },
+            {
+              "kind": "Create",
+              "title": "Draft the post",
+              "minutes": 10
+            },
+            {
+              "kind": "Practice",
+              "title": "Publishing checklist",
+              "minutes": 6
+            }
+          ],
+          "output": "A LinkedIn post draft and a publishing checklist."
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "theme": "violet",
+      "tier": "Core",
+      "title": "Portfolio",
+      "blurb": "One real case study on a public page, with a form so a client can write to you.",
+      "steps": [
+        {
+          "id": "l3s1",
+          "title": "Write a case study",
+          "minutes": 30,
+          "xp": 60,
+          "summary": "Tell one real project as problem, process and result. Mark what is verified and what is self-reported.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Problem, process, result",
+              "minutes": 5
+            },
+            {
+              "kind": "Create",
+              "title": "Draft the case study",
+              "minutes": 18
+            },
+            {
+              "kind": "Practice",
+              "title": "Add images you may share",
+              "minutes": 7
+            }
+          ],
+          "output": "A saved case study with labeled evidence."
+        },
+        {
+          "id": "l3s2",
+          "title": "Publish your page",
+          "minutes": 15,
+          "xp": 50,
+          "summary": "Put the case study on a hosted portfolio page, then open it in a private window to check.",
+          "parts": [
+            {
+              "kind": "Create",
+              "title": "Choose a page address",
+              "minutes": 3
+            },
+            {
+              "kind": "Create",
+              "title": "Publish",
+              "minutes": 5
+            },
+            {
+              "kind": "Practice",
+              "title": "Incognito check",
+              "minutes": 7
+            }
+          ],
+          "output": "A public portfolio URL."
+        },
+        {
+          "id": "l3s3",
+          "title": "Inquiry form",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Add a contact form so a visitor can send a real inquiry. Test it once yourself.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What to ask a new lead",
+              "minutes": 3
+            },
+            {
+              "kind": "Create",
+              "title": "Set up the form",
+              "minutes": 4
+            },
+            {
+              "kind": "Practice",
+              "title": "Send a test inquiry",
+              "minutes": 3
+            }
+          ],
+          "output": "A working inquiry form and an inbox for replies."
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "theme": "green",
+      "tier": "Core",
+      "title": "Upwork & Fiverr",
+      "blurb": "Reuse your profile on two marketplaces, then learn to pick jobs that fit.",
+      "steps": [
+        {
+          "id": "l4s1",
+          "title": "Upwork profile",
+          "minutes": 20,
+          "xp": 50,
+          "summary": "Adapt your title and overview to Upwork's fields. You copy the text across yourself.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "How Upwork fields differ",
+              "minutes": 4
+            },
+            {
+              "kind": "Create",
+              "title": "Title and overview",
+              "minutes": 10
+            },
+            {
+              "kind": "Practice",
+              "title": "Copy and check",
+              "minutes": 6
+            }
+          ],
+          "output": "An Upwork-ready title and overview, generated from your profile."
+        },
+        {
+          "id": "l4s2",
+          "title": "Fiverr gig packages",
+          "minutes": 25,
+          "xp": 60,
+          "summary": "Package one service into three tiers with a clear scope for each.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Scope before price",
+              "minutes": 5
+            },
+            {
+              "kind": "Create",
+              "title": "Three packages",
+              "minutes": 14
+            },
+            {
+              "kind": "Practice",
+              "title": "Gig description",
+              "minutes": 6
+            }
+          ],
+          "output": "A gig title, a description and three packages."
+        },
+        {
+          "id": "l4s3",
+          "title": "Pick relevant jobs",
+          "minutes": 20,
+          "xp": 60,
+          "summary": "Read five job posts and decide which ones fit your service and your proof.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Signals of a good fit",
+              "minutes": 5
+            },
+            {
+              "kind": "Practice",
+              "title": "Sort five job posts",
+              "minutes": 15
+            }
+          ],
+          "output": "A personal checklist for choosing jobs to apply to."
+        },
+        {
+          "id": "l4s4",
+          "title": "First proposal",
+          "minutes": 25,
+          "xp": 70,
+          "summary": "Write a proposal for one real job post, built on your case study.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Anatomy of a short proposal",
+              "minutes": 5
+            },
+            {
+              "kind": "Create",
+              "title": "Draft for a real post",
+              "minutes": 14
+            },
+            {
+              "kind": "Practice",
+              "title": "Platform rules check",
+              "minutes": 6
+            }
+          ],
+          "output": "A proposal draft you can adapt and send."
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "theme": "orange",
+      "tier": "Advanced",
+      "title": "Client conversations",
+      "blurb": "Practice the replies that decide a deal, with a simulated client and a visible rubric.",
+      "steps": [
+        {
+          "id": "l5s1",
+          "title": "Discovery questions",
+          "minutes": 20,
+          "xp": 70,
+          "summary": "Learn what to ask before you quote, then run a short simulated first call.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Five questions before a quote",
+              "minutes": 5
+            },
+            {
+              "kind": "Practice",
+              "title": "Simulated first call",
+              "minutes": 12
+            },
+            {
+              "kind": "Create",
+              "title": "Your question list",
+              "minutes": 3
+            }
+          ],
+          "output": "A discovery question list and one saved practice call."
+        },
+        {
+          "id": "l5s2",
+          "title": "Price objection",
+          "minutes": 20,
+          "xp": 80,
+          "summary": "A client says the price is too high. Answer, get scored against the rubric, then revise.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Why discounts backfire",
+              "minutes": 4
+            },
+            {
+              "kind": "Practice",
+              "title": "Answer the objection",
+              "minutes": 8
+            },
+            {
+              "kind": "Practice",
+              "title": "Revise from feedback",
+              "minutes": 8
+            }
+          ],
+          "output": "A saved, rubric-scored reply to a price objection."
+        },
+        {
+          "id": "l5s3",
+          "title": "Negotiate scope",
+          "minutes": 25,
+          "xp": 80,
+          "summary": "Trade scope instead of price. Practice offering a smaller first project.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Scope levers",
+              "minutes": 5
+            },
+            {
+              "kind": "Practice",
+              "title": "Simulated negotiation",
+              "minutes": 14
+            },
+            {
+              "kind": "Create",
+              "title": "Your fallback offer",
+              "minutes": 6
+            }
+          ],
+          "output": "A fallback offer and one saved negotiation attempt."
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "theme": "pink",
+      "tier": "Advanced",
+      "title": "Deals & documents",
+      "blurb": "Write down what was agreed: scope, milestones, payment. Templates, not legal advice.",
+      "steps": [
+        {
+          "id": "l6s1",
+          "title": "Scope of work",
+          "minutes": 25,
+          "xp": 80,
+          "summary": "Turn a conversation into a written scope: deliverables, exclusions and the number of revisions.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "What a scope must name",
+              "minutes": 6
+            },
+            {
+              "kind": "Create",
+              "title": "Draft a scope",
+              "minutes": 14
+            },
+            {
+              "kind": "Practice",
+              "title": "Find the gaps",
+              "minutes": 5
+            }
+          ],
+          "output": "A scope-of-work draft."
+        },
+        {
+          "id": "l6s2",
+          "title": "Milestones & payment",
+          "minutes": 20,
+          "xp": 80,
+          "summary": "Split the project into milestones and attach payment terms to each.",
+          "parts": [
+            {
+              "kind": "Read",
+              "title": "Milestones and deposits",
+              "minutes": 5
+            },
+            {
+              "kind": "Create",
+              "title": "Milestone plan",
+              "minutes": 10
+            },
+            {
+              "kind": "Practice",
+              "title": "Clauses that need review",
+              "minutes": 5
+            }
+          ],
+          "output": "A milestone and payment plan, with clauses flagged for qualified review."
+        },
+        {
+          "id": "l6s3",
+          "title": "Send the proposal",
+          "minutes": 25,
+          "xp": 100,
+          "summary": "Combine scope, milestones and price into one proposal and run the final checklist.",
+          "parts": [
+            {
+              "kind": "Create",
+              "title": "Assemble the proposal",
+              "minutes": 12
+            },
+            {
+              "kind": "Practice",
+              "title": "Pre-send checklist",
+              "minutes": 8
+            },
+            {
+              "kind": "Create",
+              "title": "Export",
+              "minutes": 5
+            }
+          ],
+          "output": "A complete proposal, ready to send."
+        }
+      ]
+    }
+  ]
+};
