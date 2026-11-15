@@ -34,25 +34,23 @@ class AnswerIn(BaseModel):
     value: str | list[str]
 
 
-class PreviewChapter(BaseModel):
+class PreviewStop(BaseModel):
     title: str
     theme: str
-    blurb: str
-    lesson_count: int
 
 
 class PreviewOut(BaseModel):
     headline: str
-    specialization_label: str
-    stage_label: str
-    stage_line: str
-    goal_label: str
-    channel_label: str
-    milestones: list[str]
-    chapters: list[PreviewChapter]
+    subline: str
+    # "Today, from your answers": statements that restate the quiz answers.
+    today: list[str]
+    # The chapters as numbered stops, and the rounded time to walk them.
+    stops: list[PreviewStop]
+    hours: int
+    # "After your journey": one concrete thing per chapter.
+    kit: list[str]
     first_lesson_title: str
     first_lesson_minutes: int
-    total_lessons: int
 
 
 class ClaimOut(BaseModel):

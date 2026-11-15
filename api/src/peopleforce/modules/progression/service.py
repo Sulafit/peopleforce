@@ -9,6 +9,8 @@ Every other completion pays XP immediately. XP is paid through an idempotent led
 repeated or concurrent calls can never pay twice.
 """
 
+import asyncio
+import io
 from typing import Any
 
 import structlog
@@ -34,7 +36,7 @@ from peopleforce.modules.gamification.service import GamificationService
 from peopleforce.modules.onboarding import quiz
 from peopleforce.modules.progression import engine
 from peopleforce.modules.progression.models import ActionAttempt, LessonProgress, LessonSnapshot
-from peopleforce.modules.progression.presenters import action_view, block_view
+from peopleforce.modules.progression.presenters import MAX_DOCUMENT_MEGABYTES, action_view, block_view
 from peopleforce.modules.progression.schemas import (
     AchievementOut,
     ActionSubmitOut,
@@ -55,6 +57,23 @@ from peopleforce.modules.tours.models import TourProgress
 from peopleforce.modules.tours.service import FirstLessonFact, TourService
 
 log = structlog.get_logger()
+
+
+MAX_PDF_PAGES = 12
+
+
+def extract_pdf_text(data: bytes) -> tuple[str, int]:
+    """Text of the first pages of a PDF. Unreadable or encrypted files yield empty text, not an error."""
+    from pypdf import PdfReader
+    from pypdf.errors import PyPdfError
+
+    try:
+        reader = PdfReader(io.BytesIO(data))
+        pages = len(reader.pages)
+        text = "\n".join((page.extract_text() or "") for page in reader.pages[:MAX_PDF_PAGES])
+    except (PyPdfError, ValueError, KeyError, OSError):
+        return "", 0
+    return text[:40000], pages
 
 
 def xp_key(lesson_id: str) -> str:
@@ -413,6 +432,8 @@ class ProgressionService:
         action = lesson.action(action_key)
         if action is None:
             raise not_found("Action")
+        if action.type == "document_review" and "document_text" not in payload:
+            raise AppError("invalid_submission", "Upload a PDF file.", 422)
         states = await self._states(user, lesson.id)
         unmet = engine.unmet_dependencies(lesson, action.key, states)
         if unmet:
@@ -477,6 +498,22 @@ class ProgressionService:
                 {"asset_type": outcome.result.get("asset_type"), "lesson_id": lesson.id},
             )
         return out
+
+    async def submit_document(
+        self, user: CurrentUser, lesson_id: str, action_key: str, filename: str, data: bytes
+    ) -> ActionSubmitOut:
+        """Read an uploaded PDF and run it through the action engine. The file itself is not stored."""
+        if len(data) > MAX_DOCUMENT_MEGABYTES * 1024 * 1024:
+            raise AppError("file_too_large", f"The file is larger than {MAX_DOCUMENT_MEGABYTES} MB.", 413)
+        if not data.startswith(b"%PDF"):
+            raise AppError("invalid_submission", "Upload a PDF file.", 422)
+        text, pages = await asyncio.to_thread(extract_pdf_text, data)
+        return await self.submit_action(
+            user,
+            lesson_id,
+            action_key,
+            {"document_text": text, "filename": filename[:200], "pages": pages},
+        )
 
     # ---------- completion and rewards ----------
 

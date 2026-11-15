@@ -10,45 +10,54 @@
     "frog",
     "robot"
   ],
+  "more_coming": "More chapters are on the way: pricing your work, repeat clients and raising your rate.",
   "achievements": [
     {
       "key": "first-step",
       "title": "First Step",
-      "description": "Completed your first lesson.",
+      "description": "Completed your first checkpoint.",
       "trigger": {
         "type": "lesson_completed",
-        "lesson_id": "define-your-offer"
+        "lesson_id": "upload-your-resume"
+      }
+    },
+    {
+      "key": "niche-found",
+      "title": "Niche Found",
+      "description": "Picked a niche you can prove.",
+      "trigger": {
+        "type": "asset_created",
+        "asset_type": "freelancer_niche"
       }
     },
     {
       "key": "identity-created",
       "title": "Identity Created",
-      "description": "Saved a professional offer.",
+      "description": "Saved a one-line offer.",
       "trigger": {
         "type": "asset_created",
         "asset_type": "freelancer_offer"
       }
     },
     {
-      "key": "in-your-own-words",
-      "title": "In Your Own Words",
-      "description": "Saved a professional bio.",
+      "key": "proof-ready",
+      "title": "Proof Ready",
+      "description": "Saved three cases with numbers.",
       "trigger": {
         "type": "asset_created",
-        "asset_type": "professional_bio"
+        "asset_type": "portfolio_cases"
       }
     },
     {
-      "key": "offer-ready",
-      "title": "Offer Ready",
+      "key": "foundation-laid",
+      "title": "Foundation Laid",
       "description": "Finished the first chapter.",
       "trigger": {
         "type": "lessons_completed_count",
-        "count": 3
+        "count": 5
       }
     }
   ],
-  "more_coming": "More levels are on the way: pricing, finding your first leads, and running a project from kickoff to invoice.",
   "daily_challenges": [
     {
       "key": "write-5-clients",
@@ -173,63 +182,364 @@
   ],
   "chapters": [
     {
-      "id": "your-freelance-offer",
+      "id": "foundation",
       "theme": "yellow",
-      "tier": "Basics",
-      "title": "Your freelance offer",
-      "blurb": "Decide what you sell and say it clearly. Everything later is built from this.",
+      "tier": "Foundation",
+      "title": "Foundation: résumé and positioning",
+      "blurb": "A résumé that passes the check, a niche, a one-line offer and three cases. Everything later is built from these.",
+      "outcome": "A one-line offer clients understand, and three cases with numbers",
       "lessons": [
         {
-          "id": "define-your-offer",
-          "title": "Define your freelance offer",
-          "minutes": 15,
+          "id": "upload-your-resume",
+          "title": "Upload your résumé",
+          "minutes": 10,
           "xp": 40,
-          "summary": "Turn your technical skills into one service a client can understand: what you build, who needs it, and the problem it solves.",
+          "summary": "Upload your résumé in any form, in any language. We score it on six criteria and show what to fix first.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "Why an offer beats a skill list",
+              "kind": "Video",
+              "title": "How a US client picks a freelancer",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "What we check in your résumé",
               "minutes": 3
             },
             {
-              "kind": "Practice",
-              "title": "Answer four questions",
-              "minutes": 8
-            },
-            {
-              "kind": "Create",
-              "title": "Save your offer",
-              "minutes": 4
+              "kind": "Task",
+              "title": "Upload your résumé",
+              "minutes": 5
             }
           ],
-          "output": "A freelance offer saved to your profile. Later lessons reuse it for your bio and platform profiles.",
+          "output": "A 0–100 score and a list of issues across the six criteria.",
+          "content": {
+            "blocks": [
+              {
+                "type": "youtube",
+                "key": "video",
+                "title": "How a US client picks a freelancer",
+                "video_id": "hl5uYGjiRYQ",
+                "points": [
+                  "A client scans dozens of profiles and spends a few seconds on each",
+                  "They look for three things: a clear specialization, a proven result, clear English",
+                  "The résumé is raw material: we build LinkedIn, Upwork and Fiverr from it",
+                  "What you get by the end of the chapter: a strong résumé, a niche, an offer and three cases"
+                ]
+              },
+              {
+                "type": "markdown",
+                "key": "criteria",
+                "title": "What we check in your résumé",
+                "body": "Upload it as it is today. We score six things and show what to fix first:\n\n1. **Language**: English, without word-for-word phrasing from another language\n2. **Length**: one page for up to 10 years of experience\n3. **Structure**: contacts, summary, experience (newest first), skills, education\n4. **Results**: numbers in the experience bullets\n5. **Relevance**: the experience fits remote work for a US client\n6. **Red flags**: photo, age, marital status, unexplained gaps"
+              },
+              {
+                "type": "action_group",
+                "key": "task",
+                "title": "Upload your résumé",
+                "intro": "A PDF file. Only its text is read; the file itself is not stored.",
+                "action_keys": [
+                  "resume-check"
+                ]
+              }
+            ],
+            "actions": [
+              {
+                "type": "document_review",
+                "key": "resume-check",
+                "title": "Your résumé",
+                "capability": "resume_review",
+                "asset_type": "resume_review",
+                "submit_label": "Upload PDF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "fix-the-top-3-issues",
+          "title": "Fix the top 3 issues",
+          "minutes": 15,
+          "xp": 60,
+          "summary": "In the US a résumé is a short document about results, not a personal form. Personal details are left out so they give no grounds for hiring discrimination.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Résumé teardown: before and after",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Rules of a US résumé",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "The strong bullet formula",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Check yourself",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Fix the three main issues",
+              "minutes": 5
+            }
+          ],
+          "output": "A résumé that scores 70 or higher.",
+          "content": {
+            "blocks": [
+              {
+                "type": "youtube",
+                "key": "video",
+                "title": "Résumé teardown: before and after",
+                "video_id": "s9UzlTfNdQo"
+              },
+              {
+                "type": "markdown",
+                "key": "rules",
+                "title": "Rules of a US résumé",
+                "body": "- **One page** for up to 10 years of experience\n- **No photo, age, date of birth or marital status**\n- **Newest job first**\n- **Results, not duties**\n- **Plain English**: short sentences, no translated idioms"
+              },
+              {
+                "type": "markdown",
+                "key": "bullet",
+                "title": "The strong bullet formula",
+                "body": "**Action verb + what you did + result with a number.**\n\nWeak: “Responsible for the orders API.”\n\nStrong: “Rebuilt the orders API, cutting response time from 900 ms to 200 ms.”\n\nNo exact number? Use an honest estimate and say so: “about 30% faster”."
+              },
+              {
+                "type": "quiz",
+                "key": "check",
+                "title": "Check yourself",
+                "action_keys": [
+                  "resume-quiz"
+                ]
+              },
+              {
+                "type": "action_group",
+                "key": "task",
+                "title": "Fix the three main issues",
+                "intro": "Fix the top issues from your first check, then upload the new version. You need 70 or more.",
+                "action_keys": [
+                  "resume-recheck"
+                ]
+              }
+            ],
+            "actions": [
+              {
+                "type": "quiz",
+                "key": "resume-quiz",
+                "title": "Pick the better choice",
+                "passing_score": 0.66,
+                "questions": [
+                  {
+                    "id": "q1",
+                    "prompt": "Which bullet is stronger?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "Worked on the mobile app"
+                      },
+                      {
+                        "id": "b",
+                        "label": "Cut app start time from 4 s to 1.5 s by lazy-loading screens"
+                      },
+                      {
+                        "id": "c",
+                        "label": "Was part of a great mobile team"
+                      }
+                    ],
+                    "correct_option_id": "b",
+                    "explanation": "It starts with an action and ends with a measured result."
+                  },
+                  {
+                    "id": "q2",
+                    "prompt": "What should a US résumé leave out?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "Your photo and date of birth"
+                      },
+                      {
+                        "id": "b",
+                        "label": "Your skills"
+                      },
+                      {
+                        "id": "c",
+                        "label": "Your most recent job"
+                      }
+                    ],
+                    "correct_option_id": "a",
+                    "explanation": "Personal details are left out so they give no grounds for discrimination."
+                  },
+                  {
+                    "id": "q3",
+                    "prompt": "You have 6 years of experience. How long should the résumé be?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "As long as it takes"
+                      },
+                      {
+                        "id": "b",
+                        "label": "Three pages, one per period"
+                      },
+                      {
+                        "id": "c",
+                        "label": "One page"
+                      }
+                    ],
+                    "correct_option_id": "c",
+                    "explanation": "One page for up to 10 years. A client spends seconds on it."
+                  }
+                ]
+              },
+              {
+                "type": "document_review",
+                "key": "resume-recheck",
+                "title": "Your improved résumé",
+                "capability": "resume_review",
+                "min_score": 70,
+                "asset_type": "resume_review",
+                "submit_label": "Upload new version"
+              }
+            ]
+          }
+        },
+        {
+          "id": "pick-a-niche",
+          "title": "Pick a niche",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Choose one way to narrow down. A good niche passes three checks: you have experience that proves it, there are jobs for it, and you can do the work on your own.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Why the generalist loses",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Three ways to narrow down",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Pick your niche",
+              "minutes": 5
+            }
+          ],
+          "output": "A niche saved to your profile, backed by one experience bullet.",
+          "content": {
+            "blocks": [
+              {
+                "type": "youtube",
+                "key": "video",
+                "title": "Why the generalist loses",
+                "video_id": "62Fg_3PS_dw"
+              },
+              {
+                "type": "markdown",
+                "key": "ways",
+                "title": "Three ways to narrow down",
+                "body": "Pick **one**:\n\n- **By industry**: “for e-commerce stores”\n- **By problem**: “slow apps”, “manual reporting”\n- **By technology**: “Shopify”, “React Native”\n\nA good niche passes three checks: your experience proves it, there are jobs for it, and you can do the work alone."
+              },
+              {
+                "type": "action_group",
+                "key": "task",
+                "title": "Pick your niche",
+                "action_keys": [
+                  "niche-draft",
+                  "save-niche"
+                ]
+              }
+            ],
+            "actions": [
+              {
+                "type": "text_submission",
+                "key": "niche-draft",
+                "title": "Your niche",
+                "submit_label": "Save draft",
+                "fields": [
+                  {
+                    "name": "niche",
+                    "label": "Your niche in one line",
+                    "min_length": 15,
+                    "max_length": 160,
+                    "examples": {
+                      "default": "Internal tools for small logistics companies",
+                      "websites": "Fast marketing sites for local service businesses",
+                      "web_apps": "Customer dashboards for B2B SaaS startups",
+                      "mobile_apps": "Booking apps for fitness studios",
+                      "backend": "API integrations for e-commerce stores",
+                      "automation": "Reporting automation for small online shops"
+                    }
+                  },
+                  {
+                    "name": "proof",
+                    "label": "One experience bullet that proves it",
+                    "help": "Real work. Label practice projects as practice.",
+                    "min_length": 20,
+                    "max_length": 300
+                  }
+                ]
+              },
+              {
+                "type": "save_asset",
+                "key": "save-niche",
+                "title": "Save your niche",
+                "asset_type": "freelancer_niche",
+                "source_action_key": "niche-draft"
+              }
+            ]
+          }
+        },
+        {
+          "id": "one-line-offer",
+          "title": "One-line offer",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "The offer becomes the headline on every profile. Formula: I help [who] [get a result] with [skill]. A client should know in one read whether you are for them.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "The offer formula",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Find the weak spot",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Write your offer",
+              "minutes": 5
+            }
+          ],
+          "output": "A one-line offer in English, up to 120 characters, saved to your profile.",
           "content": {
             "blocks": [
               {
                 "type": "markdown",
-                "key": "intro",
-                "title": "Clients buy outcomes, not stacks",
-                "body": "Clients do not search for a tech stack. They have a problem.\n\nAs a {{role}}, say what you do in their words:\n\n- **What** you build\n- **Who** it is for\n- **Which problem** it solves\n\nOne service is enough to start."
+                "key": "formula",
+                "title": "The offer formula",
+                "body": "**I help [who] [get a result] with [skill].**\n\n“I help online stores stop losing orders with fast, reliable checkout APIs.”\n\nAs a {{role}}, you fill three slots: the audience, the result, the skill. Up to 120 characters, in English."
               },
               {
-                "type": "callout",
-                "key": "example",
-                "tone": "tip",
-                "title": "Skill list versus offer",
-                "body": "Skill list: “JavaScript, Python, SQL.”\n\nOffer: “I build small internal tools for teams that run their work in spreadsheets, so routine tasks stop taking hours.”",
-                "body_by_specialization": {
-                  "websites": "Skill list: “HTML, CSS, JavaScript, WordPress.”\n\nOffer: “I build fast, simple websites for local service businesses, so customers can find them and book without calling.”",
-                  "web_apps": "Skill list: “React, Node.js, PostgreSQL.”\n\nOffer: “I build customer dashboards for small SaaS teams, so their users can manage accounts without emailing support.”",
-                  "mobile_apps": "Skill list: “Swift, Kotlin, React Native.”\n\nOffer: “I build booking apps for fitness studios, so members can reserve classes from their phone.”",
-                  "backend": "Skill list: “Python, FastAPI, PostgreSQL, Docker.”\n\nOffer: “I build and repair APIs for small product teams, so their app stays fast as more customers sign up.”",
-                  "automation": "Skill list: “Python, Zapier, APIs.”\n\nOffer: “I automate reporting for small e-commerce teams, so the weekly numbers arrive without anyone copying data by hand.”"
-                }
+                "type": "quiz",
+                "key": "check",
+                "title": "Find the weak spot",
+                "action_keys": [
+                  "offer-quiz"
+                ]
               },
               {
                 "type": "action_group",
-                "key": "exercise",
-                "title": "Build your offer",
-                "intro": "Your own words, real experience only. Practice projects count if you say they are practice.",
+                "key": "task",
+                "title": "Write your offer",
                 "action_keys": [
                   "offer-draft",
                   "offer-feedback",
@@ -239,58 +549,92 @@
             ],
             "actions": [
               {
+                "type": "quiz",
+                "key": "offer-quiz",
+                "title": "What is missing?",
+                "passing_score": 0.66,
+                "questions": [
+                  {
+                    "id": "q1",
+                    "prompt": "“I build great software with Python.” What is missing?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "The skill"
+                      },
+                      {
+                        "id": "b",
+                        "label": "The audience and the result"
+                      },
+                      {
+                        "id": "c",
+                        "label": "Nothing"
+                      }
+                    ],
+                    "correct_option_id": "b",
+                    "explanation": "It names a skill, but not who it is for or what they get."
+                  },
+                  {
+                    "id": "q2",
+                    "prompt": "“I help clinics.” What is missing?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "The result and the skill"
+                      },
+                      {
+                        "id": "b",
+                        "label": "The audience"
+                      },
+                      {
+                        "id": "c",
+                        "label": "Nothing"
+                      }
+                    ],
+                    "correct_option_id": "a",
+                    "explanation": "The audience is clear. The client still cannot tell what changes for them or how."
+                  },
+                  {
+                    "id": "q3",
+                    "prompt": "Which offer is complete?",
+                    "options": [
+                      {
+                        "id": "a",
+                        "label": "Full-stack developer, 5 years"
+                      },
+                      {
+                        "id": "b",
+                        "label": "I help SaaS teams cut support tickets with clear customer dashboards"
+                      },
+                      {
+                        "id": "c",
+                        "label": "I help everyone with anything"
+                      }
+                    ],
+                    "correct_option_id": "b",
+                    "explanation": "It names the audience, the result and the skill."
+                  }
+                ]
+              },
+              {
                 "type": "text_submission",
                 "key": "offer-draft",
-                "title": "Your offer in four answers",
+                "title": "Your one-line offer",
                 "submit_label": "Save draft",
                 "fields": [
                   {
-                    "name": "what-you-build",
-                    "label": "What can you build?",
-                    "help": "One service, in plain words.",
-                    "min_length": 15,
-                    "max_length": 300,
+                    "name": "offer",
+                    "label": "I help [who] [get a result] with [skill]",
+                    "help": "In English, up to 120 characters.",
+                    "min_length": 30,
+                    "max_length": 120,
                     "examples": {
-                      "default": "Small internal tools that replace spreadsheets",
-                      "websites": "Fast marketing websites with a booking form",
-                      "web_apps": "Customer dashboards and admin panels",
-                      "mobile_apps": "Booking and scheduling apps for iOS and Android",
-                      "backend": "APIs and integrations between business tools",
-                      "automation": "Scripts and workflows that remove manual reporting"
-                    }
-                  },
-                  {
-                    "name": "who-needs-it",
-                    "label": "Who might need it?",
-                    "help": "A specific kind of client.",
-                    "min_length": 10,
-                    "max_length": 300,
-                    "examples": {
-                      "default": "Small teams that run operations in spreadsheets",
-                      "websites": "Local service businesses without a working website",
-                      "backend": "Small product teams without a backend developer"
-                    }
-                  },
-                  {
-                    "name": "problem-solved",
-                    "label": "What specific problem can you solve?",
-                    "help": "What gets better for them?",
-                    "min_length": 15,
-                    "max_length": 400,
-                    "examples": {
-                      "default": "Routine tasks take hours and mistakes slip in",
-                      "websites": "Customers cannot find them or book online",
-                      "backend": "Their app slows down or breaks as usage grows"
-                    }
-                  },
-                  {
-                    "name": "relevant-experience",
-                    "label": "What relevant experience can you demonstrate?",
-                    "help": "A job, a shipped project, or a practice project.",
-                    "min_length": 15,
-                    "max_length": 500,
-                    "examples": {
-                      "default": "Built a practice inventory tool with a public repository"
+                      "default": "I help small teams replace spreadsheets with simple internal tools",
+                      "websites": "I help local service businesses get booked online with fast, simple websites",
+                      "web_apps": "I help SaaS teams cut support tickets with clear customer dashboards",
+                      "mobile_apps": "I help fitness studios fill classes with easy booking apps",
+                      "backend": "I help online stores stop losing orders with fast, reliable checkout APIs",
+                      "automation": "I help small shops get weekly numbers without manual work, with reporting automation"
                     }
                   }
                 ]
@@ -302,251 +646,120 @@
                 "capability": "freelance_offer_feedback",
                 "source_action_key": "offer-draft",
                 "required": false,
-                "submit_label": "Get feedback",
-                "instructions": "The coach reads your draft and suggests how to sharpen it."
+                "instructions": "The coach reads your offer and suggests how to sharpen it."
               },
               {
                 "type": "save_asset",
                 "key": "save-offer",
                 "title": "Save your offer",
                 "asset_type": "freelancer_offer",
-                "source_action_key": "offer-draft",
-                "submit_label": "Save to my profile",
-                "instructions": "Keep it in your profile. You can improve it any time."
+                "source_action_key": "offer-draft"
               }
             ]
           }
         },
         {
-          "id": "spot-a-strong-offer",
-          "title": "Spot a strong offer",
-          "minutes": 8,
-          "xp": 30,
-          "summary": "Train your eye: tell a clear, client-ready offer from a vague one, then check your own.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Three signs of a strong offer",
-              "minutes": 2
-            },
-            {
-              "kind": "Practice",
-              "title": "Quick check",
-              "minutes": 4
-            },
-            {
-              "kind": "Practice",
-              "title": "One commitment",
-              "minutes": 2
-            }
-          ],
-          "output": "A passed check and one rule you will apply to your own offer.",
-          "content": {
-            "blocks": [
-              {
-                "type": "markdown",
-                "key": "signs",
-                "title": "Three signs of a strong offer",
-                "body": "Read a freelancer's first line and ask:\n\n- **Can I picture the client?**\n- **Do I know what changes for them?**\n- **Is it one thing?**\n\nSpecific and modest beats impressive and vague."
-              },
-              {
-                "type": "quiz",
-                "key": "check",
-                "title": "Quick check",
-                "action_keys": [
-                  "offer-quiz"
-                ]
-              },
-              {
-                "type": "action_group",
-                "key": "commit",
-                "title": "One commitment",
-                "action_keys": [
-                  "one-service"
-                ]
-              }
-            ],
-            "actions": [
-              {
-                "type": "quiz",
-                "key": "offer-quiz",
-                "title": "Which offer is stronger?",
-                "passing_score": 0.66,
-                "questions": [
-                  {
-                    "id": "q1",
-                    "prompt": "Which first line would a client understand fastest?",
-                    "options": [
-                      {
-                        "id": "a",
-                        "label": "Full-stack developer: React, Node.js, AWS, Docker, Kubernetes"
-                      },
-                      {
-                        "id": "b",
-                        "label": "I build online booking systems for small clinics so patients stop calling to schedule"
-                      },
-                      {
-                        "id": "c",
-                        "label": "Passionate coder available for any project"
-                      }
-                    ],
-                    "correct_option_id": "b",
-                    "explanation": "It names what is built, who it is for and what changes. The other two describe the developer, not the client's problem."
-                  },
-                  {
-                    "id": "q2",
-                    "prompt": "You have only built practice projects. What is the honest way to show experience?",
-                    "options": [
-                      {
-                        "id": "a",
-                        "label": "Describe them as client work so they look stronger"
-                      },
-                      {
-                        "id": "b",
-                        "label": "Leave experience out completely"
-                      },
-                      {
-                        "id": "c",
-                        "label": "Show the practice project and label it as practice"
-                      }
-                    ],
-                    "correct_option_id": "c",
-                    "explanation": "Real, labeled practice work is proof you can build. Invented client work is a risk the first time a client asks about it."
-                  },
-                  {
-                    "id": "q3",
-                    "prompt": "Your offer lists six different services. What is the best next step?",
-                    "options": [
-                      {
-                        "id": "a",
-                        "label": "Pick the one you can prove best and lead with it"
-                      },
-                      {
-                        "id": "b",
-                        "label": "Add four more so every client finds something"
-                      },
-                      {
-                        "id": "c",
-                        "label": "Replace the list with “anything you need”"
-                      }
-                    ],
-                    "correct_option_id": "a",
-                    "explanation": "One service you can back with evidence is easier to trust and easier to find."
-                  }
-                ]
-              },
-              {
-                "type": "acknowledge",
-                "key": "one-service",
-                "title": "Lead with one service",
-                "confirm_label": "I'll lead with one service",
-                "instructions": "If your saved offer covers more than one service, narrow it."
-              }
-            ]
-          }
-        },
-        {
-          "id": "write-your-bio",
-          "title": "Write your professional bio",
-          "minutes": 20,
+          "id": "three-cases-with-numbers",
+          "title": "Three cases with numbers",
+          "minutes": 13,
           "xp": 50,
-          "summary": "Turn your offer into a short bio you can reuse on every platform: who you help, what you do, your evidence, and how to start.",
+          "summary": "A case is three or four sentences: the problem in business terms, what you did, and a result with a number.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "The four-part bio",
-              "minutes": 4
+              "kind": "Video",
+              "title": "How to tell a case without big-name clients",
+              "minutes": 2
             },
             {
-              "kind": "Practice",
-              "title": "Draft your bio",
-              "minutes": 10
+              "kind": "Lesson",
+              "title": "The case formula",
+              "minutes": 3
             },
             {
-              "kind": "Create",
-              "title": "Save your bio",
-              "minutes": 6
+              "kind": "Task",
+              "title": "Fill in three cases",
+              "minutes": 5
+            },
+            {
+              "kind": "Lesson",
+              "title": "Chapter wrap-up",
+              "minutes": 3
             }
           ],
-          "output": "A professional bio saved to your profile, ready to adapt for your platforms.",
+          "output": "Three cases saved to your profile, each with a problem, an action and a result.",
           "content": {
             "blocks": [
               {
-                "type": "markdown",
-                "key": "structure",
-                "title": "The four-part bio",
-                "body": "A bio is your offer with a little more room:\n\n1. **Who you help**\n2. **What you do for them**\n3. **Your evidence**\n4. **How to start**\n\nWrite it the way you would say it out loud. You will adapt it for {{channel}} later."
+                "type": "youtube",
+                "key": "video",
+                "title": "How to tell a case without big-name clients",
+                "video_id": "UrXIa816grU"
               },
               {
-                "type": "callout",
-                "key": "honesty",
-                "tone": "warning",
-                "title": "Only what is true",
-                "body": "No clients, results or years you do not have. Short and honest wins."
+                "type": "markdown",
+                "key": "formula",
+                "title": "The case formula",
+                "body": "1. **Problem** in business terms\n2. **What you did**\n3. **Result** with a number\n\nNo famous client needed. A job, a side project or a practice project all work, as long as a practice project is called practice."
               },
               {
                 "type": "action_group",
-                "key": "exercise",
-                "title": "Draft your bio",
+                "key": "task",
+                "title": "Fill in three cases",
+                "intro": "Cases that match your niche work best.",
                 "action_keys": [
-                  "bio-draft",
-                  "bio-feedback",
-                  "save-bio"
+                  "cases-draft",
+                  "save-cases"
                 ]
+              },
+              {
+                "type": "markdown",
+                "key": "wrap-up",
+                "title": "Chapter wrap-up",
+                "body": "You now have the raw material for every profile: a résumé that passes the check, a niche, a one-line offer and three cases.\n\nNext you turn them into a LinkedIn profile that says what you sell."
               }
             ],
             "actions": [
               {
                 "type": "text_submission",
-                "key": "bio-draft",
-                "title": "Your bio in four parts",
+                "key": "cases-draft",
+                "title": "Your three cases",
                 "submit_label": "Save draft",
                 "fields": [
                   {
-                    "name": "who-you-help",
-                    "label": "Who you help",
-                    "min_length": 15,
-                    "max_length": 300
-                  },
-                  {
-                    "name": "what-you-do",
-                    "label": "What you do for them",
-                    "min_length": 20,
-                    "max_length": 500
-                  },
-                  {
-                    "name": "evidence",
-                    "label": "Your evidence",
-                    "help": "Real work. Label practice as practice.",
-                    "min_length": 15,
-                    "max_length": 600
-                  },
-                  {
-                    "name": "how-to-start",
-                    "label": "How to start working with you",
-                    "min_length": 10,
-                    "max_length": 300,
+                    "name": "case-1",
+                    "label": "Case 1",
+                    "help": "Three or four sentences: the problem, what you did, the result with a number.",
+                    "min_length": 80,
+                    "max_length": 600,
+                    "require_digit": true,
                     "examples": {
-                      "default": "Send me a short message about your project and I will reply within a day."
+                      "default": "A store lost orders at checkout. I rebuilt the payment step. Failed payments fell from 6% to 2%."
                     }
+                  },
+                  {
+                    "name": "case-2",
+                    "label": "Case 2",
+                    "help": "Three or four sentences: the problem, what you did, the result with a number.",
+                    "min_length": 80,
+                    "max_length": 600,
+                    "require_digit": true
+                  },
+                  {
+                    "name": "case-3",
+                    "label": "Case 3",
+                    "help": "Three or four sentences: the problem, what you did, the result with a number.",
+                    "min_length": 80,
+                    "max_length": 600,
+                    "require_digit": true
                   }
                 ]
               },
               {
-                "type": "ai_review",
-                "key": "bio-feedback",
-                "title": "Coach feedback",
-                "capability": "professional_bio_feedback",
-                "source_action_key": "bio-draft",
-                "required": false,
-                "instructions": "The coach checks your bio against your saved offer."
-              },
-              {
                 "type": "save_asset",
-                "key": "save-bio",
-                "title": "Save your bio",
-                "asset_type": "professional_bio",
-                "source_action_key": "bio-draft"
+                "key": "save-cases",
+                "title": "Save your cases",
+                "asset_type": "portfolio_cases",
+                "source_action_key": "cases-draft"
               }
             ]
           }
@@ -554,472 +767,712 @@
       ]
     },
     {
-      "id": "linkedin-profile",
+      "id": "linkedin",
       "theme": "blue",
-      "tier": "Basics",
-      "title": "LinkedIn profile",
-      "blurb": "Turn the résumé into a profile people can find, then publish your first project post.",
+      "tier": "LinkedIn",
+      "title": "LinkedIn",
+      "blurb": "A profile that says what you sell, built from your offer and cases.",
+      "outcome": "A LinkedIn profile that says what you sell",
       "lessons": [
         {
-          "id": "profile-basics",
-          "title": "Profile basics",
+          "id": "linkedin-photo-and-banner",
+          "title": "Photo and banner",
           "minutes": 10,
-          "xp": 20,
-          "summary": "Photo, location, industry and a custom URL. Small fields that decide whether the rest gets read.",
+          "xp": 40,
+          "summary": "Update your photo and banner.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "What visitors see first",
-              "minutes": 3
-            },
-            {
-              "kind": "Create",
-              "title": "Fill the top card",
-              "minutes": 5
-            },
-            {
-              "kind": "Practice",
-              "title": "Check it logged out",
+              "kind": "Video",
+              "title": "What a client sees in your profile in the first seconds",
               "minutes": 2
-            }
-          ],
-          "output": "A complete top card and a custom profile URL."
-        },
-        {
-          "id": "write-your-headline",
-          "title": "Write your headline",
-          "minutes": 15,
-          "xp": 40,
-          "summary": "Say what you do and who it is for in one line. LinkedIn gives you 220 characters.",
-          "parts": [
+            },
             {
-              "kind": "Read",
-              "title": "What a headline does",
+              "kind": "Lesson",
+              "title": "Photo and banner requirements",
               "minutes": 3
             },
             {
-              "kind": "Read",
-              "title": "Three patterns that work",
-              "minutes": 3
-            },
-            {
-              "kind": "Practice",
-              "title": "Draft yours",
-              "minutes": 6
-            },
-            {
-              "kind": "Create",
-              "title": "Save to your profile",
-              "minutes": 3
-            }
-          ],
-          "output": "A headline under 220 characters, saved to your Freelancer Profile and ready to paste."
-        },
-        {
-          "id": "about-section",
-          "title": "About section",
-          "minutes": 20,
-          "xp": 40,
-          "summary": "Four short paragraphs: who you help, what you do, proof, how to reach you.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "The four-paragraph structure",
-              "minutes": 4
-            },
-            {
-              "kind": "Practice",
-              "title": "Draft from your proof bullets",
-              "minutes": 10
-            },
-            {
-              "kind": "Create",
-              "title": "Edit and copy",
-              "minutes": 6
-            }
-          ],
-          "output": "An About section drafted from your own experience, ready to paste."
-        },
-        {
-          "id": "first-project-post",
-          "title": "First project post",
-          "minutes": 20,
-          "xp": 50,
-          "summary": "Write one post about a real project. You publish it yourself; nothing is posted for you.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "What a useful project post has",
-              "minutes": 4
-            },
-            {
-              "kind": "Create",
-              "title": "Draft the post",
-              "minutes": 10
-            },
-            {
-              "kind": "Practice",
-              "title": "Publishing checklist",
-              "minutes": 6
-            }
-          ],
-          "output": "A LinkedIn post draft and a publishing checklist."
-        }
-      ]
-    },
-    {
-      "id": "portfolio",
-      "theme": "violet",
-      "tier": "Core",
-      "title": "Portfolio",
-      "blurb": "One real case study on a public page, with a form so a client can write to you.",
-      "lessons": [
-        {
-          "id": "write-a-case-study",
-          "title": "Write a case study",
-          "minutes": 30,
-          "xp": 60,
-          "summary": "Tell one real project as problem, process and result. Mark what is verified and what is self-reported.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Problem, process, result",
+              "kind": "Task",
+              "title": "Update your photo and banner",
               "minutes": 5
-            },
-            {
-              "kind": "Create",
-              "title": "Draft the case study",
-              "minutes": 18
-            },
-            {
-              "kind": "Practice",
-              "title": "Add images you may share",
-              "minutes": 7
             }
           ],
-          "output": "A saved case study with labeled evidence."
+          "output": "Update your photo and banner."
         },
         {
-          "id": "publish-your-page",
-          "title": "Publish your page",
-          "minutes": 15,
-          "xp": 50,
-          "summary": "Put the case study on a hosted portfolio page, then open it in a private window to check.",
-          "parts": [
-            {
-              "kind": "Create",
-              "title": "Choose a page address",
-              "minutes": 3
-            },
-            {
-              "kind": "Create",
-              "title": "Publish",
-              "minutes": 5
-            },
-            {
-              "kind": "Practice",
-              "title": "Incognito check",
-              "minutes": 7
-            }
-          ],
-          "output": "A public portfolio URL."
-        },
-        {
-          "id": "inquiry-form",
-          "title": "Inquiry form",
+          "id": "linkedin-headline",
+          "title": "Headline",
           "minutes": 10,
           "xp": 40,
-          "summary": "Add a contact form so a visitor can send a real inquiry. Test it once yourself.",
+          "summary": "Update your headline.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "What to ask a new lead",
+              "kind": "Lesson",
+              "title": "A headline from your offer",
               "minutes": 3
             },
             {
-              "kind": "Create",
-              "title": "Set up the form",
-              "minutes": 4
+              "kind": "Quiz",
+              "title": "Which headline is stronger",
+              "minutes": 2
             },
             {
-              "kind": "Practice",
-              "title": "Send a test inquiry",
-              "minutes": 3
+              "kind": "Task",
+              "title": "Update your headline",
+              "minutes": 5
             }
           ],
-          "output": "A working inquiry form and an inbox for replies."
-        }
-      ]
-    },
-    {
-      "id": "upwork-and-fiverr",
-      "theme": "green",
-      "tier": "Core",
-      "title": "Upwork & Fiverr",
-      "blurb": "Reuse your profile on two marketplaces, then learn to pick jobs that fit.",
-      "lessons": [
+          "output": "Update your headline."
+        },
         {
-          "id": "upwork-profile",
-          "title": "Upwork profile",
-          "minutes": 20,
+          "id": "linkedin-about",
+          "title": "About",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Fill in your About.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "About teardown: before and after",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "About structure: hook, proof, call to action",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Fill in your About",
+              "minutes": 5
+            }
+          ],
+          "output": "Fill in your About."
+        },
+        {
+          "id": "linkedin-experience-with-numbers",
+          "title": "Experience with numbers",
+          "minutes": 8,
+          "xp": 30,
+          "summary": "Fill in Experience.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Bringing experience bullets over from your résumé",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Fill in Experience",
+              "minutes": 5
+            }
+          ],
+          "output": "Fill in Experience."
+        },
+        {
+          "id": "linkedin-skills-and-open-to-work",
+          "title": "Skills and Open to work",
+          "minutes": 14,
           "xp": 50,
-          "summary": "Adapt your title and overview to Upwork's fields. You copy the text across yourself.",
+          "summary": "Add skills and turn on Open to work.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "How Upwork fields differ",
-              "minutes": 4
+              "kind": "Lesson",
+              "title": "Skills clients find you by",
+              "minutes": 3
             },
             {
-              "kind": "Create",
-              "title": "Title and overview",
-              "minutes": 10
+              "kind": "Lesson",
+              "title": "Open to work and Services",
+              "minutes": 3
             },
             {
-              "kind": "Practice",
-              "title": "Copy and check",
-              "minutes": 6
-            }
-          ],
-          "output": "An Upwork-ready title and overview, generated from your profile."
-        },
-        {
-          "id": "fiverr-gig-packages",
-          "title": "Fiverr gig packages",
-          "minutes": 25,
-          "xp": 60,
-          "summary": "Package one service into three tiers with a clear scope for each.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Scope before price",
+              "kind": "Task",
+              "title": "Add skills and turn on Open to work",
               "minutes": 5
             },
             {
-              "kind": "Create",
-              "title": "Three packages",
-              "minutes": 14
-            },
-            {
-              "kind": "Practice",
-              "title": "Gig description",
-              "minutes": 6
-            }
-          ],
-          "output": "A gig title, a description and three packages."
-        },
-        {
-          "id": "pick-relevant-jobs",
-          "title": "Pick relevant jobs",
-          "minutes": 20,
-          "xp": 60,
-          "summary": "Read five job posts and decide which ones fit your service and your proof.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Signals of a good fit",
-              "minutes": 5
-            },
-            {
-              "kind": "Practice",
-              "title": "Sort five job posts",
-              "minutes": 15
-            }
-          ],
-          "output": "A personal checklist for choosing jobs to apply to."
-        },
-        {
-          "id": "first-proposal",
-          "title": "First proposal",
-          "minutes": 25,
-          "xp": 70,
-          "summary": "Write a proposal for one real job post, built on your case study.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Anatomy of a short proposal",
-              "minutes": 5
-            },
-            {
-              "kind": "Create",
-              "title": "Draft for a real post",
-              "minutes": 14
-            },
-            {
-              "kind": "Practice",
-              "title": "Platform rules check",
-              "minutes": 6
-            }
-          ],
-          "output": "A proposal draft you can adapt and send."
-        }
-      ]
-    },
-    {
-      "id": "client-conversations",
-      "theme": "orange",
-      "tier": "Advanced",
-      "title": "Client conversations",
-      "blurb": "Practice the replies that decide a deal, with a simulated client and a visible rubric.",
-      "lessons": [
-        {
-          "id": "discovery-questions",
-          "title": "Discovery questions",
-          "minutes": 20,
-          "xp": 70,
-          "summary": "Learn what to ask before you quote, then run a short simulated first call.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Five questions before a quote",
-              "minutes": 5
-            },
-            {
-              "kind": "Practice",
-              "title": "Simulated first call",
-              "minutes": 12
-            },
-            {
-              "kind": "Create",
-              "title": "Your question list",
+              "kind": "Lesson",
+              "title": "Chapter wrap-up",
               "minutes": 3
             }
           ],
-          "output": "A discovery question list and one saved practice call."
-        },
-        {
-          "id": "price-objection",
-          "title": "Price objection",
-          "minutes": 20,
-          "xp": 80,
-          "summary": "A client says the price is too high. Answer, get scored against the rubric, then revise.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Why discounts backfire",
-              "minutes": 4
-            },
-            {
-              "kind": "Practice",
-              "title": "Answer the objection",
-              "minutes": 8
-            },
-            {
-              "kind": "Practice",
-              "title": "Revise from feedback",
-              "minutes": 8
-            }
-          ],
-          "output": "A saved, rubric-scored reply to a price objection."
-        },
-        {
-          "id": "negotiate-scope",
-          "title": "Negotiate scope",
-          "minutes": 25,
-          "xp": 80,
-          "summary": "Trade scope instead of price. Practice offering a smaller first project.",
-          "parts": [
-            {
-              "kind": "Read",
-              "title": "Scope levers",
-              "minutes": 5
-            },
-            {
-              "kind": "Practice",
-              "title": "Simulated negotiation",
-              "minutes": 14
-            },
-            {
-              "kind": "Create",
-              "title": "Your fallback offer",
-              "minutes": 6
-            }
-          ],
-          "output": "A fallback offer and one saved negotiation attempt."
+          "output": "Add skills and turn on Open to work."
         }
       ]
     },
     {
-      "id": "deals-and-documents",
-      "theme": "pink",
-      "tier": "Advanced",
-      "title": "Deals & documents",
-      "blurb": "Write down what was agreed: scope, milestones, payment. Templates, not legal advice.",
+      "id": "upwork",
+      "theme": "violet",
+      "tier": "Upwork",
+      "title": "Upwork",
+      "blurb": "Account, title, overview, rate and portfolio, up to a complete profile.",
+      "outcome": "An Upwork profile at 100%",
       "lessons": [
         {
-          "id": "scope-of-work",
-          "title": "Scope of work",
-          "minutes": 25,
-          "xp": 80,
-          "summary": "Turn a conversation into a written scope: deliverables, exclusions and the number of revisions.",
+          "id": "upwork-account-and-sign-in",
+          "title": "Account and sign-in",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Create an account and sign in.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "What a scope must name",
-              "minutes": 6
+              "kind": "Video",
+              "title": "How Upwork works: connects, JSS, fees",
+              "minutes": 2
             },
             {
-              "kind": "Create",
-              "title": "Draft a scope",
-              "minutes": 14
+              "kind": "Lesson",
+              "title": "Sign-up and why profiles get rejected",
+              "minutes": 3
             },
             {
-              "kind": "Practice",
-              "title": "Find the gaps",
+              "kind": "Task",
+              "title": "Create an account and sign in",
               "minutes": 5
             }
           ],
-          "output": "A scope-of-work draft."
+          "output": "Create an account and sign in."
         },
         {
-          "id": "milestones-and-payment",
-          "title": "Milestones & payment",
-          "minutes": 20,
-          "xp": 80,
-          "summary": "Split the project into milestones and attach payment terms to each.",
+          "id": "upwork-title-and-overview",
+          "title": "Title and overview",
+          "minutes": 15,
+          "xp": 60,
+          "summary": "Fill in your title and overview.",
           "parts": [
             {
-              "kind": "Read",
-              "title": "Milestones and deposits",
-              "minutes": 5
+              "kind": "Video",
+              "title": "Overview teardown: before and after",
+              "minutes": 2
             },
             {
-              "kind": "Create",
-              "title": "Milestone plan",
-              "minutes": 10
+              "kind": "Lesson",
+              "title": "A title from your offer",
+              "minutes": 3
             },
             {
-              "kind": "Practice",
-              "title": "Clauses that need review",
+              "kind": "Lesson",
+              "title": "The first two lines of the overview",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Which overview is stronger",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Fill in your title and overview",
               "minutes": 5
             }
           ],
-          "output": "A milestone and payment plan, with clauses flagged for qualified review."
+          "output": "Fill in your title and overview."
         },
         {
-          "id": "send-the-proposal",
-          "title": "Send the proposal",
-          "minutes": 25,
-          "xp": 100,
-          "summary": "Combine scope, milestones and price into one proposal and run the final checklist.",
+          "id": "upwork-skills-and-rate",
+          "title": "Skills and rate",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Set your skills and rate.",
           "parts": [
             {
-              "kind": "Create",
-              "title": "Assemble the proposal",
-              "minutes": 12
+              "kind": "Lesson",
+              "title": "Skills and categories",
+              "minutes": 3
             },
             {
-              "kind": "Practice",
-              "title": "Pre-send checklist",
-              "minutes": 8
+              "kind": "Video",
+              "title": "How to pick a starting rate",
+              "minutes": 2
             },
             {
-              "kind": "Create",
-              "title": "Export",
+              "kind": "Task",
+              "title": "Set your skills and rate",
               "minutes": 5
             }
           ],
-          "output": "A complete proposal, ready to send."
+          "output": "Set your skills and rate."
+        },
+        {
+          "id": "upwork-upwork-portfolio",
+          "title": "Upwork portfolio",
+          "minutes": 8,
+          "xp": 30,
+          "summary": "Add three cases.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "How to present a case in your portfolio",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Add three cases",
+              "minutes": 5
+            }
+          ],
+          "output": "Add three cases."
+        },
+        {
+          "id": "upwork-profile-at-100",
+          "title": "Profile at 100%",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Bring your profile to 100%.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Verification, languages and video intro",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Bring your profile to 100%",
+              "minutes": 5
+            },
+            {
+              "kind": "Lesson",
+              "title": "Chapter wrap-up",
+              "minutes": 3
+            }
+          ],
+          "output": "Bring your profile to 100%."
+        }
+      ]
+    },
+    {
+      "id": "fiverr",
+      "theme": "green",
+      "tier": "Fiverr",
+      "title": "Fiverr",
+      "blurb": "One gig, three packages, published.",
+      "outcome": "A published Fiverr gig with three packages",
+      "lessons": [
+        {
+          "id": "fiverr-seller-account",
+          "title": "Seller account",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Create a seller account.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "How Fiverr differs from Upwork",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Seller profile",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Create a seller account",
+              "minutes": 5
+            }
+          ],
+          "output": "Create a seller account."
+        },
+        {
+          "id": "fiverr-gig-title-and-category",
+          "title": "Gig title and category",
+          "minutes": 13,
+          "xp": 50,
+          "summary": "Set the title and category.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "The gig title formula",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "Category and tags",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Which title is stronger",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Set the title and category",
+              "minutes": 5
+            }
+          ],
+          "output": "Set the title and category."
+        },
+        {
+          "id": "fiverr-packages-and-prices",
+          "title": "Packages and prices",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Set up packages and prices.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Three packages: how to build the lineup",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Starting prices and extras",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Set up packages and prices",
+              "minutes": 5
+            }
+          ],
+          "output": "Set up packages and prices."
+        },
+        {
+          "id": "fiverr-description-and-faq",
+          "title": "Description and FAQ",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Fill in the description and FAQ.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Gig description structure",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "FAQ and buyer requirements",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Fill in the description and FAQ",
+              "minutes": 5
+            }
+          ],
+          "output": "Fill in the description and FAQ."
+        },
+        {
+          "id": "fiverr-cover-and-publishing",
+          "title": "Cover and publishing",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Publish your gig.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Cover and gallery",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Publish your gig",
+              "minutes": 5
+            },
+            {
+              "kind": "Lesson",
+              "title": "Chapter wrap-up",
+              "minutes": 3
+            }
+          ],
+          "output": "Publish your gig."
+        }
+      ]
+    },
+    {
+      "id": "proposals",
+      "theme": "orange",
+      "tier": "Proposals",
+      "title": "Proposals",
+      "blurb": "Find the right jobs, read them properly, and send proposals that get replies.",
+      "outcome": "A proposal template and five real proposals sent",
+      "lessons": [
+        {
+          "id": "proposals-job-search-and-filters",
+          "title": "Job search and filters",
+          "minutes": 10,
+          "xp": 40,
+          "summary": "Save a search for your niche.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Finding jobs: screencast",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Filters and saved searches",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Save a search for your niche",
+              "minutes": 5
+            }
+          ],
+          "output": "Save a search for your niche."
+        },
+        {
+          "id": "proposals-job-post-breakdown-and-red-flags",
+          "title": "Job post breakdown and red flags",
+          "minutes": 13,
+          "xp": 50,
+          "summary": "Break down three job posts.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "How to read a job post",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "Client red flags",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Apply or skip",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Break down three job posts",
+              "minutes": 5
+            }
+          ],
+          "output": "Break down three job posts."
+        },
+        {
+          "id": "proposals-proposal-structure",
+          "title": "Proposal structure",
+          "minutes": 15,
+          "xp": 60,
+          "summary": "Build your proposal template.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Proposal teardown: before and after",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "The four parts of a proposal",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "The first two lines",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Which proposal is stronger",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Build your proposal template",
+              "minutes": 5
+            }
+          ],
+          "output": "Build your proposal template."
+        },
+        {
+          "id": "proposals-three-proposals-in-the-simulator",
+          "title": "Three proposals in the simulator",
+          "minutes": 8,
+          "xp": 30,
+          "summary": "Write three proposals in the simulator.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "How the simulator works",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Write three proposals in the simulator",
+              "minutes": 5
+            }
+          ],
+          "output": "Write three proposals in the simulator."
+        },
+        {
+          "id": "proposals-five-real-proposals",
+          "title": "Five real proposals",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Send five real proposals.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "When and what to apply to",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Send five real proposals",
+              "minutes": 5
+            },
+            {
+              "kind": "Lesson",
+              "title": "Chapter wrap-up",
+              "minutes": 3
+            }
+          ],
+          "output": "Send five real proposals."
+        }
+      ]
+    },
+    {
+      "id": "client-and-first-order",
+      "theme": "pink",
+      "tier": "Client and first order",
+      "title": "Client and first order",
+      "blurb": "From the first message to getting paid and asked back.",
+      "outcome": "Practiced client replies, a first call and a milestone plan",
+      "lessons": [
+        {
+          "id": "client-replying-to-the-first-message",
+          "title": "Replying to the first message",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Reply to a client in the simulator.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Speed and structure of your reply",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "Questions to ask the client",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Reply to a client in the simulator",
+              "minutes": 5
+            }
+          ],
+          "output": "Reply to a client in the simulator."
+        },
+        {
+          "id": "client-practice-call",
+          "title": "Practice call",
+          "minutes": 13,
+          "xp": 50,
+          "summary": "Complete a practice call.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "How a first call goes",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Self-intro in 60 seconds",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "Common client questions",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Complete a practice call",
+              "minutes": 5
+            }
+          ],
+          "output": "Complete a practice call."
+        },
+        {
+          "id": "client-contract-and-milestones",
+          "title": "Contract and milestones",
+          "minutes": 12,
+          "xp": 50,
+          "summary": "Split a project into milestones.",
+          "parts": [
+            {
+              "kind": "Video",
+              "title": "Fixed price or hourly",
+              "minutes": 2
+            },
+            {
+              "kind": "Lesson",
+              "title": "Scope and milestones",
+              "minutes": 3
+            },
+            {
+              "kind": "Quiz",
+              "title": "Find the mistake in the contract",
+              "minutes": 2
+            },
+            {
+              "kind": "Task",
+              "title": "Split a project into milestones",
+              "minutes": 5
+            }
+          ],
+          "output": "Split a project into milestones."
+        },
+        {
+          "id": "client-getting-paid",
+          "title": "Getting paid",
+          "minutes": 11,
+          "xp": 40,
+          "summary": "Connect a withdrawal method.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "Withdrawal methods",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "W-8BEN and taxes",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Connect a withdrawal method",
+              "minutes": 5
+            }
+          ],
+          "output": "Connect a withdrawal method."
+        },
+        {
+          "id": "client-review-and-repeat-order",
+          "title": "Review and repeat order",
+          "minutes": 14,
+          "xp": 50,
+          "summary": "Write a project wrap-up message.",
+          "parts": [
+            {
+              "kind": "Lesson",
+              "title": "How to ask for a review",
+              "minutes": 3
+            },
+            {
+              "kind": "Lesson",
+              "title": "How to get a repeat order",
+              "minutes": 3
+            },
+            {
+              "kind": "Task",
+              "title": "Write a project wrap-up message",
+              "minutes": 5
+            },
+            {
+              "kind": "Lesson",
+              "title": "Course wrap-up",
+              "minutes": 3
+            }
+          ],
+          "output": "Write a project wrap-up message."
         }
       ]
     }

@@ -1,0 +1,61 @@
+<section id="tech" data-transition="fade">
+<div class="head">
+<p class="eyebrow">04 · Technology</p>
+<h2 class="title">How it is built</h2>
+</div>
+<div class="grid3 grow" style="align-items:start">
+<div class="card card-tight blue in" style="--i:0">
+<h3 class="sub">Web app</h3>
+<div class="chips">
+<div class="chip"><img class="chip-logo" src="/_blob/8d2b2e971323866fbff29501a44e915a" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Next.js</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/c8b49e327cd669c0f643a95c1da385ed" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">React</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/63d4bde51b19a25425646919a077669d" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">TypeScript</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/4622d7cf06533203e8c31ffabf6275cb" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Tailwind</p></div>
+</div>
+</div>
+<div class="card card-tight violet in" style="--i:1">
+<h3 class="sub">Backend</h3>
+<div class="chips">
+<div class="chip"><img class="chip-logo" src="/_blob/0f96ff40be715d921b31dea94afb0a8d" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Python</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/92f508ad40e75ae597954e491e1f9461" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">FastAPI</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/569d28456e5ac1abf9ae4395520a7431" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">PostgreSQL</p></div>
+</div>
+</div>
+<div class="card card-tight green in" style="--i:2">
+<h3 class="sub">Content</h3>
+<div class="chips">
+<div class="chip"><img class="chip-logo" src="/_blob/526fa163ef7ccd03a464b4454d383187" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Sanity CMS</p></div>
+</div>
+<p class="small">Lessons are edited as content, not code.</p>
+</div>
+<div class="card card-tight orange in" style="--i:3">
+<h3 class="sub">AI layer</h3>
+<div class="chips">
+<div class="chip"><p class="chip-txt">Langfuse</p></div>
+<div class="chip"><p class="chip-txt">Any LLM</p></div>
+</div>
+<p class="small">Swappable provider, validated output, traced calls.</p>
+</div>
+<div class="card card-tight pink in" style="--i:4">
+<h3 class="sub">Hosting</h3>
+<div class="chips">
+<div class="chip"><img class="chip-logo" src="/_blob/04b3f7e267d381c1c59f7676a1d67434" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Docker</p></div>
+<div class="chip"><p class="chip-txt">Dokploy</p></div>
+</div>
+<p class="small">Self-hosted with Docker Compose.</p>
+</div>
+<div class="card card-tight cream in" style="--i:5">
+<h3 class="sub">Analytics, email</h3>
+<div class="chips">
+<div class="chip"><img class="chip-logo" src="/_blob/9947dafc6aab9434416e00667777420f" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">PostHog</p></div>
+<div class="chip"><img class="chip-logo" src="/_blob/2d2e12c2087657b4f857d4c8e85c41a0" alt="" style="width:32px; height:32px; object-fit:contain"><p class="chip-txt">Resend</p></div>
+</div>
+<p class="small">Product funnel and magic-link sign-in.</p>
+</div>
+</div>
+<div class="foot">
+<p class="foot-src">Server-side progress rules, an XP ledger that never pays out twice, passwordless sign-in.</p>
+<p class="foot-pg">5 / 10</p>
+</div>
+<aside>The stack in one breath: a Next.js web app, a Python FastAPI backend on PostgreSQL, and lesson content managed in Sanity so editors can change the journey without a deploy. The AI sits behind a provider abstraction, its output is validated before it is used, and every call is traced in Langfuse. The backend, not the browser and not the LLM, decides progress and XP, and rewards are idempotent. Sign-in is a passwordless email link sent through Resend, and the quiz a visitor took before signing up is linked to their account. It all runs on Docker Compose through Dokploy, with product analytics in PostHog.</aside>
+</section>

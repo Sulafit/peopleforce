@@ -37,6 +37,15 @@ def learner_facts(profile: FreelancerProfile) -> dict[str, Any]:
     }
 
 
+def _trace_input(payload: dict[str, Any]) -> Any:
+    """What the trace shows at a glance. A whole document is summarized, not copied, into the root."""
+    if "submission" in payload:
+        return payload["submission"]
+    if "document" in payload:
+        return {"document": f"{len(payload['document'])} characters (contacts redacted)"}
+    return payload
+
+
 class AiService:
     def __init__(
         self,
@@ -107,7 +116,7 @@ class AiService:
             with self._prompts.trace(
                 name=capability.trace_name,
                 # What a reviewer needs at a glance: the learner's own text for feedback, the task for drafts.
-                input=payload.get("submission") or payload,
+                input=_trace_input(payload),
                 user_id=str(user_id),
                 # Repeated requests on one exercise form one session: iterations on a draft read as a thread.
                 session_id=f"{user_id}:{lesson_id}" if lesson_id else None,

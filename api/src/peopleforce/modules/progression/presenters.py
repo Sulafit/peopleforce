@@ -13,6 +13,7 @@ from peopleforce.modules.curriculum.schemas import (
     AiReviewAction,
     Block,
     CalloutBlock,
+    DocumentReviewAction,
     ExternalTaskAction,
     Lesson,
     MarkdownBlock,
@@ -26,6 +27,8 @@ from peopleforce.modules.freelancer.models import FreelancerProfile
 from peopleforce.modules.onboarding import quiz
 from peopleforce.modules.progression import engine
 from peopleforce.modules.progression.schemas import ActionOut, ActionStateOut
+
+MAX_DOCUMENT_MEGABYTES = 5
 
 
 def personalization_tokens(profile: FreelancerProfile) -> dict[str, str]:
@@ -48,7 +51,13 @@ def block_view(block: Block, profile: FreelancerProfile) -> dict[str, Any]:
             "body": render(block.body, tokens),
         }
     if isinstance(block, YouTubeBlock):
-        return {"type": block.type, "key": block.key, "title": block.title, "video_id": block.video_id}
+        return {
+            "type": block.type,
+            "key": block.key,
+            "title": block.title,
+            "video_id": block.video_id,
+            "points": list(block.points),
+        }
     if isinstance(block, CalloutBlock):
         body = block.body_by_specialization.get(profile.specialization, block.body)
         return {
@@ -110,6 +119,12 @@ def action_config(action: Action, profile: FreelancerProfile) -> dict[str, Any]:
             "source_action_key": action.source_action_key,
             "submit_label": action.submit_label,
             "supported": capability is not None and capability.kind == "feedback",
+        }
+    if isinstance(action, DocumentReviewAction):
+        return {
+            "submit_label": action.submit_label,
+            "min_score": action.min_score,
+            "max_megabytes": MAX_DOCUMENT_MEGABYTES,
         }
     if isinstance(action, ExternalTaskAction):
         return {"target_count": action.target_count, "unit": action.unit, "tips": list(action.tips)}

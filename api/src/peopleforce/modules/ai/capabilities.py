@@ -24,6 +24,19 @@ class WritingFeedback(BaseModel):
     suggested_one_liner: str
 
 
+class ResumeCriterion(BaseModel):
+    key: Literal["language", "length", "structure", "results", "relevance", "red_flags"]
+    status: Literal["pass", "improve", "fix"]
+    note: str
+
+
+class ResumeReview(BaseModel):
+    score: int = Field(ge=0, le=100)
+    summary: str
+    criteria: list[ResumeCriterion] = Field(min_length=6, max_length=6)
+    top_issues: list[str] = Field(max_length=3)
+
+
 class PlatformDraft(BaseModel):
     title: str
     body: str
@@ -62,6 +75,13 @@ CAPABILITIES: dict[str, Capability] = {
             output_model=WritingFeedback,
             trace_name="review-professional-bio",
             context_asset_types=("freelancer_offer",),
+        ),
+        Capability(
+            name="resume_review",
+            kind="feedback",
+            prompt_name="resume_review",
+            output_model=ResumeReview,
+            trace_name="review-resume",
         ),
         Capability(
             name="generate_platform_draft",

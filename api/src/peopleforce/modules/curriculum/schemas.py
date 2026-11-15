@@ -23,6 +23,7 @@ CompletionStrategy = Literal[
     "asset_exists",
     "asset_published",
     "self_reported_count",
+    "document_checked",
 ]
 
 # Strategies that have a handler today. Lessons using anything else are reported as not playable.
@@ -34,6 +35,7 @@ IMPLEMENTED_STRATEGIES: frozenset[str] = frozenset(
         "ai_feedback_received",
         "asset_exists",
         "self_reported_count",
+        "document_checked",
     }
 )
 
@@ -57,6 +59,8 @@ class YouTubeBlock(ContentModel):
     key: Key
     title: str
     video_id: Annotated[str, Field(pattern=r"^[A-Za-z0-9_-]{11}$")]
+    # "In this video": a few lines on what the learner will see.
+    points: list[str] = Field(default_factory=list, max_length=6)
 
 
 class CalloutBlock(ContentModel):
@@ -125,6 +129,8 @@ class TextField(ContentModel):
     max_length: int = Field(default=600, ge=1, le=5000)
     # Example answers keyed by quiz specialization; "default" is the fallback.
     examples: dict[str, str] = Field(default_factory=dict)
+    # The answer must contain at least one number (results with numbers, e.g. in a case study).
+    require_digit: bool = False
 
     @model_validator(mode="after")
     def _bounds(self) -> "TextField":
@@ -198,13 +204,30 @@ class ExternalTaskAction(ActionBase):
     completion: Literal["self_reported_count"] = "self_reported_count"
 
 
+class DocumentReviewAction(ActionBase):
+    """The learner uploads a PDF (their résumé); the backend reads it and an AI capability scores it.
+
+    Completed when the file is readable and looks like the expected document and, if `min_score` is
+    set, the AI score reaches it. Without `min_score` the step never depends on AI being available.
+    """
+
+    type: Literal["document_review"]
+    capability: Key
+    min_score: int | None = Field(default=None, ge=0, le=100)
+    # Saved to the profile as this asset type (a summary of the review, never the file itself).
+    asset_type: Key | None = None
+    submit_label: str = "Upload PDF"
+    completion: Literal["document_checked"] = "document_checked"
+
+
 Action = Annotated[
     AcknowledgeAction
     | TextSubmissionAction
     | QuizAction
     | AiReviewAction
     | SaveAssetAction
-    | ExternalTaskAction,
+    | ExternalTaskAction
+    | DocumentReviewAction,
     Field(discriminator="type"),
 ]
 
@@ -213,7 +236,7 @@ Action = Annotated[
 
 
 class LessonPart(ContentModel):
-    kind: Literal["Read", "Practice", "Create"]
+    kind: Literal["Video", "Lesson", "Quiz", "Task", "Read", "Practice", "Create"]
     title: str
     minutes: int = Field(ge=1, le=240)
 
@@ -296,6 +319,8 @@ class Chapter(ContentModel):
     tier: str
     title: str
     blurb: str
+    # What the learner has after this chapter; one line of the "client-ready kit" in the preview.
+    outcome: str | None = None
     lessons: list[Lesson] = Field(min_length=1)
 
 

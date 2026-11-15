@@ -83,14 +83,14 @@ QUESTIONS: tuple[Question, ...] = (
         id="existing_assets",
         title="What do you already have?",
         kind="multi",
-        helper="Choose everything that applies.",
+        helper="Pick all that apply.",
         options=(
-            Option("portfolio_website", "Portfolio website"),
-            Option("work_samples", "Existing work samples"),
-            Option("upwork_profile", "Upwork profile"),
-            Option("fiverr_profile", "Fiverr profile"),
-            Option("linkedin_presence", "LinkedIn presence"),
-            Option("none", "None", exclusive=True),
+            Option("portfolio_website", "A portfolio"),
+            Option("work_samples", "Work samples"),
+            Option("upwork_profile", "An Upwork profile"),
+            Option("fiverr_profile", "A Fiverr profile"),
+            Option("linkedin_presence", "A LinkedIn presence"),
+            Option("none", "None of these yet", exclusive=True),
         ),
     ),
     Question(
@@ -235,3 +235,55 @@ def milestones(profile: PersonalizationProfile) -> list[str]:
         CHANNEL_MILESTONE.get(profile.acquisition_channel, "Prepare marketplace profiles"),
         "Start approaching clients",
     ]
+
+
+# ---------- Journey preview copy (deterministic, from explicit answers only) ----------
+
+STAGE_PHRASE = {
+    "never": "never freelanced",
+    "tried_no_clients": "tried, no clients yet",
+    "few_projects": "a project or two",
+    "recurring_clients": "a few steady clients",
+}
+
+STAGE_TODAY = {
+    "never": "Never freelanced before",
+    "tried_no_clients": "Tried freelancing, no clients yet",
+    "few_projects": "One or two freelance projects done",
+    "recurring_clients": "Recurring clients, ready for better ones",
+}
+
+MAKES = {
+    "websites": "websites",
+    "web_apps": "web apps",
+    "mobile_apps": "mobile apps",
+    "backend": "backends and APIs",
+    "automation": "automations",
+    "not_sure": "software",
+}
+
+
+def preview_headline(profile: PersonalizationProfile) -> str:
+    return f"From “{STAGE_PHRASE[profile.freelance_stage]}” to client-ready"
+
+
+def preview_subline(profile: PersonalizationProfile, stops: int) -> str:
+    makes = MAKES.get(profile.specialization, "software")
+    return f"That is the trip your {stops} stops are built for, planned around the {makes} you already make."
+
+
+def today_from_answers(profile: PersonalizationProfile) -> list[str]:
+    """Where the learner stands today, in their own answers. Nothing is inferred beyond them."""
+    has = set(profile.existing_assets)
+    early = profile.freelance_stage in ("never", "tried_no_clients")
+    lines = [STAGE_TODAY[profile.freelance_stage]]
+    if "upwork_profile" in has:
+        lines.append("An Upwork profile, no work from it yet" if early else "An Upwork profile")
+    if "fiverr_profile" in has:
+        lines.append("A Fiverr profile, no orders from it yet" if early else "A Fiverr profile")
+    if "linkedin_presence" in has:
+        lines.append("A LinkedIn presence")
+    if "work_samples" in has:
+        lines.append("Work samples" if "portfolio_website" in has else "Work samples nobody has seen")
+    lines.append("A portfolio website" if "portfolio_website" in has else "No portfolio page")
+    return lines

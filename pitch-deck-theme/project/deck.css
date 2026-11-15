@@ -1,0 +1,381 @@
+/* Freelance Growth OS pitch deck.
+   Look: the product's own sticker style. Ink outlines, hard shadows, warm paper,
+   yellow as the one accent, the six level colours only where the journey is drawn.
+   Type scale: 120 / 68 / 44 / 32 / 26, with 24 for the footer and the dense table. */
+
+body {
+  font-family: 'Nunito Sans', Arial, sans-serif;
+  color: #1D1B26;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  padding: 128px 128px 160px;
+  background: #FAF7F0;
+  color: #1D1B26;
+}
+
+.dark {
+  background: #1D1B26;
+  color: #FAF7F0;
+}
+
+/* ---------- Text roles ---------- */
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eyebrow {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #55525F;
+}
+
+.dark .eyebrow {
+  color: #FFC83D;
+}
+
+.title {
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 68px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: #1D1B26;
+}
+
+.cover-title {
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 120px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: #FAF7F0;
+}
+
+.cover-lead {
+  width: 1300px;
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #E8E4DA;
+}
+
+.sub {
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1D1B26;
+}
+
+.txt {
+  font-size: 32px;
+  line-height: 1.4;
+  color: #3B3845;
+}
+
+.strong {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1D1B26;
+}
+
+.small {
+  font-size: 26px;
+  line-height: 1.4;
+  color: #55525F;
+}
+
+.label {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #55525F;
+}
+
+.num {
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 68px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #1D1B26;
+}
+
+/* ---------- Layout ---------- */
+
+.row {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grow {
+  flex: 1;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 32px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.w-left {
+  width: 660px;
+}
+
+.w-steps {
+  width: 700px;
+}
+
+/* ---------- Sticker cards ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px 34px 34px;
+  border: 3px solid #1D1B26;
+  border-radius: 28px;
+  background: #FFFEFA;
+  box-shadow: 0 8px 0 #1D1B26;
+}
+
+.card-tight {
+  gap: 6px;
+  padding: 24px 30px 28px;
+}
+
+.yellow { background: #FFC83D; }
+.blue { background: #DDEBFF; }
+.violet { background: #EAE4FF; }
+.green { background: #D9F5E3; }
+.orange { background: #FFE8D4; }
+.pink { background: #FFE0EA; }
+.cream { background: #FFF1CC; }
+
+.stat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+}
+
+.stat-num {
+  width: 210px;
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 68px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #1D1B26;
+}
+
+.flat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 30px 30px;
+  border-radius: 24px;
+  background: #F1EEE6;
+}
+
+.note {
+  padding: 18px 26px;
+  border: 3px dashed #1D1B26;
+  border-radius: 22px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1D1B26;
+}
+
+.pill {
+  padding: 10px 22px;
+  border: 3px solid #1D1B26;
+  border-radius: 999px;
+  background: #FFFEFA;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1D1B26;
+}
+
+.dark .pill {
+  border: 3px solid #FAF7F0;
+  background: #1D1B26;
+  color: #FAF7F0;
+}
+
+.pill-accent {
+  border: 3px solid #FFC83D;
+  background: #FFC83D;
+  color: #1D1B26;
+}
+
+.dark .pill-accent {
+  border: 3px solid #FFC83D;
+  background: #FFC83D;
+  color: #1D1B26;
+}
+
+/* ---------- Journey steps ---------- */
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.badge {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #1D1B26;
+  border-radius: 18px;
+  font-family: 'Fredoka', 'Trebuchet MS', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: #1D1B26;
+}
+
+.b-yellow { background: #FFC83D; }
+.b-blue { background: #4DA3FF; }
+.b-violet { background: #A78BFA; }
+.b-green { background: #4FD17F; }
+.b-orange { background: #FF9A4D; }
+.b-pink { background: #FF7FA8; }
+
+.step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shot {
+  border: 3px solid #1D1B26;
+  border-radius: 28px;
+  box-shadow: 0 8px 0 #1D1B26;
+  background: #FAF7F0;
+}
+
+.blocks {
+  display: flex;
+  gap: 14px;
+}
+
+.block {
+  width: 72px;
+  height: 72px;
+  border: 3px solid #FAF7F0;
+  border-radius: 20px;
+}
+
+/* ---------- Tables ---------- */
+
+.tbl {
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.35;
+  color: #1D1B26;
+}
+
+.tbl-big {
+  width: 100%;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #1D1B26;
+}
+
+.tr-head {
+  background: #F1EEE6;
+}
+
+.tr-us {
+  background: #FFC83D;
+}
+
+.list {
+  font-size: 32px;
+  line-height: 1.4;
+  color: #1D1B26;
+}
+
+/* ---------- Footer band ---------- */
+
+.foot {
+  position: absolute;
+  left: 128px;
+  bottom: 64px;
+  width: 1664px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.foot-src {
+  font-size: 24px;
+  line-height: 1.3;
+  color: #55525F;
+}
+
+.foot-pg {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #55525F;
+}
+
+.dark .foot-src,
+.dark .foot-pg {
+  color: #BFBACB;
+}
+
+/* ---------- Motion: cards settle in on arrival ---------- */
+
+.in {
+  animation: settle 0.5s ease-out both;
+  animation-delay: calc(var(--i) * 120ms);
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

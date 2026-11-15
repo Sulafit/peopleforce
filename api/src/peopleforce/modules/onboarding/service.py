@@ -21,7 +21,7 @@ from peopleforce.modules.curriculum.schemas import LearningPath
 from peopleforce.modules.freelancer.service import FreelancerService
 from peopleforce.modules.onboarding import quiz
 from peopleforce.modules.onboarding.models import OnboardingDraft
-from peopleforce.modules.onboarding.schemas import PreviewChapter, PreviewOut
+from peopleforce.modules.onboarding.schemas import PreviewOut, PreviewStop
 
 log = structlog.get_logger()
 
@@ -93,21 +93,16 @@ class OnboardingService:
         assert draft.profile is not None
         profile = quiz.load_profile(draft.profile)
         first = path.chapters[0].lessons[0]
+        minutes = sum(lesson.minutes for lesson in path.lessons)
         return PreviewOut(
-            headline=f"Your path from {quiz.role_label(profile)} to independent freelancer",
-            specialization_label=quiz.label("specialization", profile.specialization),
-            stage_label=quiz.label("freelance_stage", profile.freelance_stage),
-            stage_line=quiz.STAGE_LINE[profile.freelance_stage],
-            goal_label=quiz.label("primary_goal", profile.primary_goal),
-            channel_label=quiz.label("acquisition_channel", profile.acquisition_channel),
-            milestones=quiz.milestones(profile),
-            chapters=[
-                PreviewChapter(title=c.title, theme=c.theme, blurb=c.blurb, lesson_count=len(c.lessons))
-                for c in path.chapters
-            ],
+            headline=quiz.preview_headline(profile),
+            subline=quiz.preview_subline(profile, len(path.chapters)),
+            today=quiz.today_from_answers(profile),
+            stops=[PreviewStop(title=chapter.title, theme=chapter.theme) for chapter in path.chapters],
+            hours=max(round(minutes / 60), 1),
+            kit=[chapter.outcome for chapter in path.chapters if chapter.outcome],
             first_lesson_title=first.title,
             first_lesson_minutes=first.minutes,
-            total_lessons=len(path.lessons),
         )
 
     async def claim(self, draft_id: uuid.UUID, user_id: uuid.UUID, path_id: str) -> bool:

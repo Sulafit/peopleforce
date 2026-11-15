@@ -7,6 +7,7 @@ lessons or commit; the progression engine does that from the recorded outcomes.
 Adding an action type = a Pydantic model in curriculum/schemas.py + a handler registered here.
 """
 
+import re
 import uuid
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
@@ -19,6 +20,7 @@ from peopleforce.modules.curriculum.schemas import (
     AcknowledgeAction,
     Action,
     AiReviewAction,
+    DocumentReviewAction,
     ExternalTaskAction,
     Lesson,
     QuizAction,
@@ -96,6 +98,8 @@ async def text_submission(ctx: ActionContext) -> ActionOutcome:
             )
         elif len(value) > spec.max_length:
             errors[spec.name] = f"Keep it under {spec.max_length} characters."
+        elif spec.require_digit and not any(ch.isdigit() for ch in value):
+            errors[spec.name] = "Add at least one number: a result is stronger with a figure."
         values[spec.name] = value
     if errors:
         raise invalid("Some answers need another look.", errors)
@@ -207,6 +211,90 @@ async def external_task(ctx: ActionContext) -> ActionOutcome:
     )
 
 
+EXPERIENCE_WORDS = re.compile(
+    r"\b(experience|employment|work history|worked|developer|engineer|опыт)\b", re.I
+)
+SKILL_WORDS = re.compile(r"\b(skills?|technologies|stack|tools|навыки)\b", re.I)
+EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
+PHONE = re.compile(r"(?<!\w)\+?\d[\d\s().-]{8,}\d(?!\w)")
+
+
+def redact_contacts(text: str) -> str:
+    """Strip emails and phone numbers before a document leaves the app (model, logs, traces)."""
+    return PHONE.sub("[phone]", EMAIL.sub("[email]", text))
+
+
+async def document_review(ctx: ActionContext) -> ActionOutcome:
+    """Check an uploaded document. `payload` is built by the upload endpoint, never by the client."""
+    action = ctx.action
+    assert isinstance(action, DocumentReviewAction) and ctx.lesson is not None
+    text = ctx.payload.get("document_text")
+    if not isinstance(text, str):
+        raise invalid("Upload a PDF file.")
+    recognized = len(text.strip()) >= 200
+    checks = {
+        "recognized": recognized,
+        "experience_and_skills": bool(
+            recognized and EXPERIENCE_WORDS.search(text) and SKILL_WORDS.search(text)
+        ),
+    }
+    meta = {
+        "filename": ctx.payload.get("filename"),
+        "pages": ctx.payload.get("pages"),
+        "characters": len(text),
+    }
+    if not recognized:
+        return ActionOutcome(
+            completed=False,
+            payload=meta,
+            result={
+                "checks": checks,
+                "review": None,
+                "message": "We could not read text in this file. Export a text PDF, not a scan.",
+            },
+        )
+
+    review: dict[str, Any] | None = None
+    if ctx.ai.available:
+        try:
+            review, _ = await ctx.ai.run(
+                user_id=ctx.user_id,
+                capability_name=action.capability,
+                lesson_id=ctx.lesson.id,
+                action_key=action.key,
+                payload={"document": redact_contacts(text)[:12000]},
+            )
+        except AppError:
+            if action.min_score is not None:
+                raise  # this step needs the score; the learner can retry
+    elif action.min_score is not None:
+        raise AppError("ai_not_configured", "The résumé check is not available right now.", 503)
+
+    score = review.get("score") if review else None
+    passed = checks["experience_and_skills"] and (
+        action.min_score is None or (isinstance(score, int) and score >= action.min_score)
+    )
+    result: dict[str, Any] = {"checks": checks, "review": review, "min_score": action.min_score}
+    if not checks["experience_and_skills"]:
+        result["message"] = "This does not look like a résumé yet: we could not find experience and skills."
+    elif not passed:
+        result["message"] = f"Score {score} of 100. Reach {action.min_score} to finish this checkpoint."
+
+    created = False
+    if passed and action.asset_type:
+        _, created = await ctx.freelancer.save_asset(
+            user_id=ctx.user_id,
+            asset_type=action.asset_type,
+            lesson_id=ctx.lesson.id,
+            action_key=action.key,
+            content={
+                "title": f"Résumé check: {score} of 100" if score is not None else "Résumé uploaded",
+                "body": (review or {}).get("summary") or "Your résumé was read successfully.",
+            },
+        )
+    return ActionOutcome(completed=passed, payload=meta, result=result, asset_created=created)
+
+
 HANDLERS: dict[str, Handler] = {
     "acknowledge": acknowledge,
     "text_submission": text_submission,
@@ -214,4 +302,5 @@ HANDLERS: dict[str, Handler] = {
     "ai_review": ai_review,
     "save_asset": save_asset,
     "external_task": external_task,
+    "document_review": document_review,
 }
