@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+api
+studio
+docs
+design
+prototype
+e2e
+test-results
+playwright-report
+.env*
+docker-compose*.yml

@@ -1,24 +1,26 @@
-import { FlagIcon, LockIcon } from "@/components/icons";
+import { LockIcon, SparkIcon } from "@/components/icons";
 import { StepNode } from "@/components/roadmap/StepNode";
-import { LEVELS, roadShape, stepStatus, type StepEntry } from "@/lib/roadmap";
+import type { Chapter } from "@/lib/api/types";
+import { roadShape, type StepEntry } from "@/lib/roadmap";
 
 interface RoadmapMapProps {
-  done: ReadonlySet<string>;
+  levels: Chapter[];
   current: StepEntry | null;
   selectedId: string | null;
   onOpen: (stepId: string) => void;
-  onReset: () => void;
+  /** What is planned after the last published level. */
+  moreComing: string | null;
 }
 
 /** The map: one outlined strip, one tinted zone per level, one road through all of them. */
-export function RoadmapMap({ done, current, selectedId, onOpen, onReset }: RoadmapMapProps) {
-  const currentLevel = current ? current.levelIndex : LEVELS.length;
+export function RoadmapMap({ levels, current, selectedId, onOpen, moreComing }: RoadmapMapProps) {
+  const currentLevel = current ? current.levelIndex : levels.length;
 
   return (
     <div className="map">
-      {LEVELS.map((level, levelIndex) => {
-        const count = level.steps.length;
-        const doneCount = level.steps.filter((step) => done.has(step.id)).length;
+      {levels.map((level, levelIndex) => {
+        const count = level.lessons.length;
+        const doneCount = level.lessons.filter((step) => step.status === "done").length;
         const levelDone = doneCount === count;
         const locked = levelIndex > currentLevel;
         const reached = levelIndex <= currentLevel;
@@ -28,7 +30,7 @@ export function RoadmapMap({ done, current, selectedId, onOpen, onReset }: Roadm
         return (
           <section
             key={level.id}
-            className={`zone zone--${levelIndex + 1} t-${level.theme}`}
+            className={`zone zone--${(levelIndex % 6) + 1} t-${level.theme}`}
             aria-label={`Level ${levelIndex + 1}: ${level.title}`}
           >
             <div className="gate">
@@ -64,23 +66,22 @@ export function RoadmapMap({ done, current, selectedId, onOpen, onReset }: Roadm
               </div>
             </div>
 
-            {level.steps.map((step, stepIndex) => {
-              const next = level.steps[stepIndex + 1];
+            {level.lessons.map((step, stepIndex) => {
+              const next = level.lessons[stepIndex + 1];
               const x = xs[stepIndex];
-              const status = stepStatus(step.id, done, current);
               return (
                 <StepNode
                   key={step.id}
                   step={step}
                   number={stepIndex + 1}
-                  status={status}
+                  status={step.status}
                   selected={selectedId === step.id}
                   x={x}
                   // Labels go on the outside of the bend; centre steps use the side the road bends away from.
                   labelSide={x !== 0 ? x : -direction}
                   toNext={next ? xs[stepIndex + 1] - x : null}
                   // The stretch to the next step is travelled once this step is done.
-                  travelled={status === "done" && !!next && stepStatus(next.id, done, current) !== "locked"}
+                  travelled={step.status === "done" && !!next && next.status !== "locked"}
                   stubTop={stepIndex === 0 ? (reached ? "on" : "off") : null}
                   stubBottom={!next ? (levelDone ? "on" : "off") : null}
                   onOpen={onOpen}
@@ -88,19 +89,16 @@ export function RoadmapMap({ done, current, selectedId, onOpen, onReset }: Roadm
               );
             })}
 
-            {levelIndex === LEVELS.length - 1 && (
+            {levelIndex === levels.length - 1 && (
               <div className="fin">
                 <span className={`fin-line${current ? "" : " is-on"}`} aria-hidden="true" />
                 <span className="fin-badge" aria-hidden="true">
-                  <FlagIcon />
+                  <SparkIcon />
                 </span>
                 <div className="fin-text">
-                  <strong>Finish</strong>
-                  <span>A client-ready freelance presence</span>
+                  <strong>More coming soon</strong>
+                  <span>{moreComing ?? "New levels are added as they are ready."}</span>
                 </div>
-                <button type="button" className="reset" onClick={onReset}>
-                  Reset demo progress
-                </button>
               </div>
             )}
           </section>

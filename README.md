@@ -1,50 +1,78 @@
-# Freelance Growth OS
+# PeopleForce
 
-A gamified learning roadmap for people starting to freelance: one road, six levels, 21 steps. The levels go Résumé basics → LinkedIn profile → Portfolio → Upwork & Fiverr → Client conversations → Deals & documents. Click a step to see what it covers.
+A gamified learning path that helps skilled professionals start and grow a freelance business.
+Learn something, apply it, keep a real asset, move on.
 
-Two pages are built: the roadmap and one lesson (Level 2, "Write your headline").
+After the first run there is a daily loop: a two-minute daily challenge, a streak, XP ranks, and a
+profile page (click your avatar) with your rank ladder, achievements and everything you have built.
+The path is open-ended: 20 steps are mapped, 3 are playable, the rest are marked "Coming soon".
+
+First-time journey, fully working: landing → 7-question quiz → personalized preview → email magic link
+→ journey map → first lesson → avatar → XP → next lesson unlocked → guided tour complete.
+Everything is persisted server-side, so refreshes, logouts and other devices resume where you stopped.
 
 ## What is in the repo
 
-| Folder | What it is |
+| Path | What it is |
 |---|---|
-| `app/`, `components/`, `lib/` | The Next.js + TypeScript app |
-| `data/roadmap.json` | All roadmap content (levels, steps, lesson parts). Both builds read it. |
-| `prototype/` | The same two pages as plain HTML/CSS/JS. Open `prototype/index.html` in a browser; no build needed. |
-| `design/` | Design source and screenshots (see below) |
-| `scripts/sync-prototype.mjs` | Copies data, styles and fonts from the app into `prototype/` |
+| `app/`, `components/`, `lib/` | Next.js 16 web app (TypeScript, React Query, Zod, Driver.js, PostHog) |
+| `api/` | FastAPI backend (Dishka, SQLAlchemy 2 async, Alembic, Pydantic v2, Adaptix), managed with `uv` |
+| `studio/` | Sanity Studio schema for learning content |
+| `e2e/` | Playwright test of the first-run journey |
+| `docs/` | Architecture, flows, data model, content schema, action engine, AI, deployment, decisions, plan |
+| `docker-compose.yml` | Production stack (web, api, migrate, postgres) for Dokploy |
+| `prototype/`, `design/`, `data/roadmap.json` | The original static prototype and design sources (reference) |
 
-## Run the app
+## Run it locally
+
+Needs Node 20+, `uv`, Docker.
 
 ```bash
+# 1. Database
+docker compose -f docker-compose.dev.yml up -d
+
+# 2. API (http://localhost:8000, docs at /api/v1/docs)
+cd api
+cp .env.example .env
+uv sync
+uv run alembic upgrade head
+uv run uvicorn peopleforce.main:app_factory --factory --port 8000 --reload --reload-dir src
+
+# 3. Web (http://localhost:3000), in a second terminal at the repo root
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
+npm run dev
 ```
 
-Routes: `/` is the roadmap and `/lessons/write-your-headline` is the lesson.
+`PUBLIC_BASE_URL` in `api/.env` must be the address you open the web app on. If port 3000 is taken,
+run `npx next dev -p 3100` and set `PUBLIC_BASE_URL=http://localhost:3100`.
 
-Progress is saved in `localStorage` (`lib/progress.ts`), so it survives a refresh. That file is the place to connect a real backend later. The map starts with 5 steps done as a demo; "Reset demo progress" at the bottom of the map puts it back.
+With the default `EMAIL_PROVIDER=console`, no email is sent: the "check your inbox" screen shows the
+sign-in link (development only), and the API log prints it.
+
+AI feedback is off by default. To turn it on, set `LLM_PROVIDER=gemini` and `GEMINI_API_KEY` in `api/.env`.
+
+## Checks
+
+```bash
+cd api && uv run pytest && uv run ruff check src tests alembic && uv run alembic check
+npm run lint && npm run typecheck && npm run build
+npm run test:e2e        # needs the three processes above; see playwright.config.ts
+```
 
 ## Editing
 
-- **Content:** edit `data/roadmap.json`.
-- **Styles:** edit `app/globals.css`. Each level has a colour theme (`.t-yellow`, `.t-blue`, …) set through four CSS variables.
-- **3D tiles:** these are plain CSS, not WebGL. Each tile is one element with `rotateX(55deg) rotateZ(45deg)`, and stacked `box-shadow`s give it thickness.
-- **Road shape:** `roadShape()` in `lib/roadmap.ts` sets where each step sits. It uses the `--pitch` and `--swing` values in the CSS.
+- **Lesson content**: `api/content/software-development.json` (seed) or Sanity Studio (`docs/content-schema.md`).
+- **Styles**: `app/globals.css` is the design system. Each level has a colour theme (`.t-yellow`, `.t-blue`, …).
+  After changing it, `npm run sync:prototype` updates `prototype/`.
+- **Quiz questions**: `api/src/peopleforce/modules/onboarding/quiz.py`.
+- **Tour steps**: `components/tour/steps.ts` (presentation) and `api/src/peopleforce/modules/tours/service.py` (state machine).
 
-After changing the data or the CSS, run `npm run sync:prototype` to update `prototype/`.
+## Documents
 
-## Design
-
-- Live design canvas: https://claude.ai/artifact/LV55gLhTzGJuvqECzcRbtQ (private to its owner until shared)
-- `design/canvas/`: the canvas source files
-- `design/screenshots/`: the roadmap on desktop and phone, and the lesson page
-
-There is no Figma file yet. These screenshots and the canvas are the design reference.
+Start with `docs/architecture.md` and `docs/user-flow.md`. `docs/implementation-plan.md` lists what is
+built, what was verified, and what is left. `docs/deployment.md` covers Dokploy.
 
 ## Not built yet
 
-- Lesson pages for every step except "Write your headline". The other steps show "Lesson coming soon".
-- Auth, a database, and AI rubric feedback. The headline checks are simple rules that run in the browser.
-- The levels "Skill Development" and "Growth & Analytics" from the brief.
+Buttons for the AI platform draft (the API exists), lesson content beyond the first chapter, a public profile page, and anything that needs accounts this repo does not have yet
+(Resend, Sanity, PostHog and Langfuse are wired but unverified). Details in `docs/implementation-plan.md`.

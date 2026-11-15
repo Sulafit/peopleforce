@@ -1,23 +1,20 @@
 import Link from "next/link";
 import { ClockIcon, CloseIcon, LockIcon, StarIcon } from "@/components/icons";
-import { LESSON_ROUTES, stepStatus, type StepEntry } from "@/lib/roadmap";
+import { lessonHref, type StepEntry } from "@/lib/roadmap";
 
 interface StepDrawerProps {
   entry: StepEntry;
-  done: ReadonlySet<string>;
   current: StepEntry | null;
   onClose: () => void;
-  onComplete: () => void;
   onGoToCurrent: () => void;
 }
 
 const STATUS_LABEL = { done: "Completed", current: "Current step", locked: "Locked" } as const;
 
 /** What opens when a step is clicked: the course content for that step. */
-export function StepDrawer({ entry, done, current, onClose, onComplete, onGoToCurrent }: StepDrawerProps) {
+export function StepDrawer({ entry, current, onClose, onGoToCurrent }: StepDrawerProps) {
   const { level, levelIndex, step, stepIndex } = entry;
-  const status = stepStatus(step.id, done, current);
-  const lessonRoute = LESSON_ROUTES[step.id];
+  const status = step.status;
 
   return (
     <aside className={`drawer t-${level.theme}`} aria-label="Step details">
@@ -32,7 +29,7 @@ export function StepDrawer({ entry, done, current, onClose, onComplete, onGoToCu
 
       <div className="drawer__intro">
         <span className="drawer__status">
-          Step {stepIndex + 1} of {level.steps.length} · {STATUS_LABEL[status]}
+          Step {stepIndex + 1} of {level.lessons.length} · {STATUS_LABEL[status]}
         </span>
         <h2 className="drawer__title">{step.title}</h2>
         <p className="drawer__summary">{step.summary}</p>
@@ -49,21 +46,23 @@ export function StepDrawer({ entry, done, current, onClose, onComplete, onGoToCu
         <span className="pill pill--sm">{level.tier}</span>
       </div>
 
-      <div>
-        <h3 className="cap section-label">In this step</h3>
-        <ol>
-          {step.parts.map((part, index) => (
-            <li key={part.title} className="part">
-              <span className="part__n">{index + 1}</span>
-              <span className="part__text">
-                <span className="part__title">{part.title}</span>
-                <span className="part__kind">{part.kind}</span>
-              </span>
-              <span className="part__min">{part.minutes} min</span>
-            </li>
-          ))}
-        </ol>
-      </div>
+      {step.parts.length > 0 && (
+        <div>
+          <h3 className="cap section-label">In this step</h3>
+          <ol>
+            {step.parts.map((part, index) => (
+              <li key={part.title} className="part">
+                <span className="part__n">{index + 1}</span>
+                <span className="part__text">
+                  <span className="part__title">{part.title}</span>
+                  <span className="part__kind">{part.kind}</span>
+                </span>
+                <span className="part__min">{part.minutes} min</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <div className="outcome">
         <span className="cap">You finish with</span>
@@ -72,18 +71,15 @@ export function StepDrawer({ entry, done, current, onClose, onComplete, onGoToCu
 
       {status === "current" && (
         <div className="actions">
-          {lessonRoute ? (
-            <Link className="btn btn--primary grow" href={lessonRoute}>
-              Start lesson
+          {step.playable ? (
+            <Link className="btn btn--primary grow" href={lessonHref(step.id)}>
+              {step.reward_pending ? "Claim your reward" : "Start lesson"}
             </Link>
           ) : (
-            <button type="button" className="btn btn--primary grow" disabled title="This lesson page is not built yet">
+            <button type="button" className="btn btn--primary grow" disabled title="This lesson is not published yet">
               Lesson coming soon
             </button>
           )}
-          <button type="button" className="btn" onClick={onComplete}>
-            Mark as done
-          </button>
         </div>
       )}
 
@@ -93,6 +89,11 @@ export function StepDrawer({ entry, done, current, onClose, onComplete, onGoToCu
             <StarIcon size={20} fill="#FFC83D" />
             Completed · +{step.xp} XP
           </span>
+          {step.playable && (
+            <Link className="btn btn--sm" href={lessonHref(step.id)}>
+              Review
+            </Link>
+          )}
         </div>
       )}
 

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Roadmap } from "@/components/roadmap/Roadmap";
+import { Landing } from "@/components/landing/Landing";
 
 export const metadata: Metadata = {
-  title: "Roadmap",
+  title: "PeopleForce — Turn your skills into a freelance business",
 };
 
-export default function RoadmapPage() {
-  return <Roadmap />;
+export default function LandingPage() {
+  return <Landing />;
 }

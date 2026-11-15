@@ -1,0 +1,23 @@
+/*
+  Tailwind utilities for new screens. The design system itself stays in globals.css.
+
+  - No preflight: globals.css already owns the reset, and a second one would change existing screens.
+  - Utilities live in a cascade layer, globals.css is unlayered, so a globals rule always wins over a
+    utility on the same property. Use utilities for layout and spacing, component classes for looks.
+  - The theme maps Tailwind tokens onto the existing CSS variables, so both systems share one palette.
+*/
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-ink: #1d1b26;
+  --color-ink-2: #3b3845;
+  --color-muted: #55525f;
+  --color-paper: #faf7f0;
+  --color-line: #d9d5cc;
+  --color-xp: #ffc83d;
+  --color-danger: #b3261e;
+  --font-display: "Fredoka Variable", "Fredoka", "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Nunito Variable", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}

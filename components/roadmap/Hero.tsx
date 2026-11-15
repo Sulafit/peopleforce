@@ -1,24 +1,29 @@
+import Link from "next/link";
 import { ArrowIcon } from "@/components/icons";
-import { LEVELS, type StepEntry } from "@/lib/roadmap";
+import type { Chapter } from "@/lib/api/types";
+import { lessonHref, type StepEntry } from "@/lib/roadmap";
 
 interface HeroProps {
-  done: ReadonlySet<string>;
+  levels: Chapter[];
   current: StepEntry | null;
   total: number;
-  onContinue: () => void;
+  trackLabel: string;
+  welcome: string;
+  /** Optional card shown under "Next up" (the daily challenge). */
+  extra?: React.ReactNode;
 }
 
-export function Hero({ done, current, total, onContinue }: HeroProps) {
-  const currentLevel = current ? current.levelIndex : LEVELS.length;
+export function Hero({ levels, current, total, trackLabel, welcome, extra }: HeroProps) {
+  const currentLevel = current ? current.levelIndex : levels.length;
 
   return (
     <section className="hero">
       <div className="hero__text">
-        <span className="cap muted">Your roadmap · Web designer track</span>
-        <h1>Build a client-ready freelance presence</h1>
+        <span className="cap muted">Your journey · {trackLabel}</span>
+        <h1>{welcome}</h1>
         <p className="hero__lead">
-          One road, six levels, {total} steps. Each step is a little harder than the last and ends with something you can
-          use: a résumé, a profile, a published page, a practiced reply.
+          Each step ends with something you can use: an offer, a bio, a published page, a practiced reply. New levels
+          are added as they are ready.
         </p>
         {current ? (
           <div className={`next-card t-${current.level.theme}`}>
@@ -26,23 +31,32 @@ export function Hero({ done, current, total, onContinue }: HeroProps) {
               <span className="cap">Next up · Level {current.levelIndex + 1}</span>
               <span className="next-card__title">{current.step.title}</span>
               <span className="next-card__meta">
-                {current.level.title} · {current.step.minutes} min · +{current.step.xp} XP
+                {current.level.title} ·{" "}
+                {current.step.playable ? `${current.step.minutes} min · +${current.step.xp} XP` : "Coming soon"}
               </span>
             </div>
-            <button type="button" className="btn btn--primary" onClick={onContinue}>
-              Continue
-              <ArrowIcon />
-            </button>
+            {current.step.playable ? (
+              // Says what it does and does it: straight into the lesson.
+              <Link className="btn btn--primary" href={lessonHref(current.step.id)}>
+                {current.step.reward_pending ? "Claim your reward" : current.step.started ? "Continue lesson" : "Start lesson"}
+                <ArrowIcon />
+              </Link>
+            ) : (
+              <button type="button" className="btn" disabled>
+                Coming soon
+              </button>
+            )}
           </div>
         ) : (
-          <p className="next-card__title">All {total} steps complete.</p>
+          <p className="next-card__title">All {total} published steps complete. More are on the way.</p>
         )}
+        {extra}
       </div>
 
       {/* Progress tower: one slab per level, solid once the level is started */}
       <div className="tower" aria-hidden="true">
-        {LEVELS.map((level, index) => {
-          const started = level.steps.some((step) => done.has(step.id));
+        {levels.map((level, index) => {
+          const started = level.lessons.some((step) => step.status === "done");
           return (
             <div
               key={level.id}

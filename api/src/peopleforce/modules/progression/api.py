@@ -1,0 +1,70 @@
+from dishka.integrations.fastapi import DishkaRoute, FromDishka
+from fastapi import APIRouter
+
+from peopleforce.modules.auth.schemas import CurrentUser
+from peopleforce.modules.progression.schemas import (
+    ActionSubmitIn,
+    ActionSubmitOut,
+    AvatarIn,
+    AvatarOut,
+    CompleteOut,
+    JourneyOut,
+    LessonOut,
+    TourEventIn,
+    TourOut,
+)
+from peopleforce.modules.progression.service import ProgressionService
+
+router = APIRouter(tags=["journey"], route_class=DishkaRoute)
+
+
+@router.get("/journey", response_model=JourneyOut)
+async def get_journey(user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]):
+    """Everything the journey map renders: chapters, lesson states, XP, tour stage."""
+    return await service.journey(user)
+
+
+@router.get("/journey/lessons/{lesson_id}", response_model=LessonOut)
+async def get_lesson(lesson_id: str, user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]):
+    return await service.lesson(user, lesson_id)
+
+
+@router.post("/journey/lessons/{lesson_id}/start", response_model=LessonOut)
+async def start_lesson(
+    lesson_id: str, user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]
+):
+    return await service.start_lesson(user, lesson_id)
+
+
+@router.post("/journey/lessons/{lesson_id}/actions/{action_key}", response_model=ActionSubmitOut)
+async def submit_action(
+    lesson_id: str,
+    action_key: str,
+    body: ActionSubmitIn,
+    user: FromDishka[CurrentUser],
+    service: FromDishka[ProgressionService],
+):
+    return await service.submit_action(user, lesson_id, action_key, body.payload)
+
+
+@router.post("/journey/lessons/{lesson_id}/complete", response_model=CompleteOut)
+async def complete_lesson(
+    lesson_id: str, user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]
+):
+    """Idempotent. Pays the reward, or parks it until an avatar is chosen (first lesson only)."""
+    return await service.complete_lesson(user, lesson_id)
+
+
+@router.put("/me/avatar", response_model=AvatarOut)
+async def select_avatar(
+    body: AvatarIn, user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]
+):
+    """Save the avatar and pay any reward that was waiting for it, in one transaction."""
+    return await service.select_avatar(user, body.avatar_key)
+
+
+@router.post("/tour/events", response_model=TourOut)
+async def tour_event(
+    body: TourEventIn, user: FromDishka[CurrentUser], service: FromDishka[ProgressionService]
+):
+    return await service.tour_event(user, body.event)

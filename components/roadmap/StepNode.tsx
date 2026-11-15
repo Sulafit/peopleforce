@@ -1,8 +1,9 @@
 import { StarIcon } from "@/components/icons";
-import type { Step, StepStatus } from "@/lib/roadmap";
+import type { LessonNode } from "@/lib/api/types";
+import type { StepStatus } from "@/lib/roadmap";
 
 interface StepNodeProps {
-  step: Step;
+  step: LessonNode;
   number: number;
   status: StepStatus;
   selected: boolean;
@@ -37,8 +38,10 @@ export function StepNode({ step, number, status, selected, x, labelSide, toNext,
       <button
         type="button"
         className={`node node--${position} is-${status}${selected ? " is-selected" : ""}`}
-        aria-label={`Step ${number}: ${step.title}, ${step.minutes} minutes, ${STATUS_LABEL[status]}`}
+        aria-label={`Step ${number}: ${step.title}, ${step.playable ? `${step.minutes} minutes` : "coming soon"}, ${STATUS_LABEL[status]}`}
         aria-pressed={selected}
+        // Stable anchor for the product tour: always the checkpoint the learner should open next.
+        data-tour={status === "current" ? "current-checkpoint" : undefined}
         onClick={() => onOpen(step.id)}
       >
         {segment && <span className={`seg seg--${segment}${travelled ? " is-on" : ""}`} aria-hidden="true" />}
@@ -54,9 +57,7 @@ export function StepNode({ step, number, status, selected, x, labelSide, toNext,
             </span>
           )}
           <span className="lbl__title">{step.title}</span>
-          <span className="lbl__meta">
-            {step.minutes} min · +{step.xp} XP
-          </span>
+          <span className="lbl__meta">{step.playable ? `${step.minutes} min · +${step.xp} XP` : "Coming soon"}</span>
         </span>
       </button>
     </div>

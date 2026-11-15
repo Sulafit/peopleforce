@@ -7,21 +7,31 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:prototype": "node scripts/sync-prototype.mjs"
+    "sync:prototype": "node scripts/sync-prototype.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/fredoka": "^5.3.0",
     "@fontsource-variable/nunito": "^5.3.0",
+    "@tanstack/react-query": "^5.107.1",
+    "driver.js": "^1.14.0",
     "next": "16.4.6",
+    "posthog-js": "^1.449.2",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-markdown": "^10.1.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@tailwindcss/postcss": "^4.3.5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "tailwindcss": "^4.3.5",
     "typescript": "^5"
   }
 }

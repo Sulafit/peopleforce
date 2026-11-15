@@ -1,0 +1,7 @@
+# Run the production stack on your machine (publishes the web port; Dokploy does this with a domain).
+#   cp .env.example .env   # set POSTGRES_PASSWORD and PUBLIC_BASE_URL=http://localhost:3200
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
+services:
+  web:
+    ports:
+      - "127.0.0.1:${WEB_PORT:-3200}:3000"

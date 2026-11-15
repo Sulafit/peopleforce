@@ -72,3 +72,19 @@ export function LogoIcon({ size = 32 }: IconProps) {
     </svg>
   );
 }
+
+export function FlameIcon({ size = 16, lit = true }: IconProps & { lit?: boolean }) {
+  return (
+    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill={lit ? "#FF9A4D" : "#fff"} stroke={INK} strokeWidth={2.2} strokeLinejoin="round">
+      <path d="M12 2.5c.6 3.4 5.5 5.6 5.5 10.9a5.5 5.5 0 0 1-11 0c0-2 .9-3.4 2-4.6.3 1.5 1 2.4 1.9 2.8C10 8.300 10.600 5.200 12 2.500z" />
+    </svg>
+  );
+}
+
+export function SparkIcon({ size = 30 }: IconProps) {
+  return (
+    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="#FFC83D" stroke={INK} strokeWidth={2.2} strokeLinejoin="round">
+      <path d="M12 3l2.200 6.300L20.500 12l-6.300 2.700L12 21l-2.200-6.300L3.500 12l6.300-2.700z" />
+    </svg>
+  );
+}

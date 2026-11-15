@@ -1,70 +1,25 @@
-import data from "@/data/roadmap.json";
+import type { Chapter, LessonNode } from "@/lib/api/types";
 
 export type Theme = "yellow" | "blue" | "violet" | "green" | "orange" | "pink";
 export type PartKind = "Read" | "Practice" | "Create";
+export type StepStatus = "done" | "current" | "locked";
 
-export interface StepPart {
-  kind: PartKind;
-  title: string;
-  minutes: number;
-}
-
-export interface Step {
-  id: string;
-  title: string;
-  minutes: number;
-  xp: number;
-  summary: string;
-  parts: StepPart[];
-  /** The artifact the learner has at the end of the step. */
-  output: string;
-}
-
-export interface Level {
-  id: string;
-  theme: Theme;
-  tier: string;
-  title: string;
-  blurb: string;
-  steps: Step[];
-}
-
-/** A step together with where it sits in the roadmap. */
+/** A lesson together with where it sits on the journey map. Statuses come from the backend. */
 export interface StepEntry {
-  level: Level;
+  level: Chapter;
   levelIndex: number;
-  step: Step;
+  step: LessonNode;
   stepIndex: number;
 }
 
-export type StepStatus = "done" | "current" | "locked";
-
-export const LEVELS = data.levels as Level[];
-
-export const STEPS: StepEntry[] = LEVELS.flatMap((level, levelIndex) =>
-  level.steps.map((step, stepIndex) => ({ level, levelIndex, step, stepIndex })),
-);
-
-/** Demo seed so the map opens mid-journey. A real account starts with []. */
-export const DEMO_DONE: string[] = ["l1s1", "l1s2", "l1s3", "l1s4", "l2s1"];
-
-/** Steps that have a lesson page built. */
-export const LESSON_ROUTES: Record<string, string> = {
-  l2s2: "/lessons/write-your-headline",
-};
-
-/** The first unfinished step, or null when the whole roadmap is done. */
-export function currentStep(done: ReadonlySet<string>): StepEntry | null {
-  return STEPS.find((entry) => !done.has(entry.step.id)) ?? null;
+export function flattenSteps(chapters: Chapter[]): StepEntry[] {
+  return chapters.flatMap((level, levelIndex) =>
+    level.lessons.map((step, stepIndex) => ({ level, levelIndex, step, stepIndex })),
+  );
 }
 
-export function stepStatus(stepId: string, done: ReadonlySet<string>, current: StepEntry | null): StepStatus {
-  if (done.has(stepId)) return "done";
-  return current?.step.id === stepId ? "current" : "locked";
-}
-
-export function totalXp(done: ReadonlySet<string>): number {
-  return STEPS.reduce((sum, entry) => sum + (done.has(entry.step.id) ? entry.step.xp : 0), 0);
+export function lessonHref(lessonId: string): string {
+  return `/journey/lessons/${lessonId}`;
 }
 
 /**
